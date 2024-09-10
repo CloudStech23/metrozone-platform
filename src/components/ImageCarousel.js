@@ -1,4 +1,5 @@
 import React from 'react';
+import '../components/Common.css'
 
 const ImageCarousel = ({ images }) => {
     return (

@@ -1,8 +1,9 @@
-import './App.css';
+// import './App.css';
 import { useEffect, useState } from 'react';
 import { db } from './Firebase.js';
 import { collection, getDocs } from 'firebase/firestore';
 import Accordion from './components/Accordion.js';
+import './components/Common.css'
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(null);
