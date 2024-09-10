@@ -38,7 +38,7 @@ export default function Accordion({
               <div>
                 <span className="Event-title">{item.eventName}</span>
                 <span> - </span>
-                <span className="text-muted fs-6">Tuesday</span>
+                {/* <span className="text-muted fs-6">Tuesday</span> */}
                 <em className="ml-2 fs-6 text-muted Event-data">{item.date}</em>
                 <span className="Event-place fs-6 ml-2">{item.location}</span>
                 <div>
