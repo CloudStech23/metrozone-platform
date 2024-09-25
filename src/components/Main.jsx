@@ -23,7 +23,7 @@ export default function Main() {
 
   return (
     <div className="mb-4">
-      <MDBNavbar expand="lg" light style={{ background: "#000066" }}>
+      <MDBNavbar expand="lg" light style={{ background: "rgb(51 51 194)",height:'4rem' }}>
         <MDBContainer fluid className="mx-4 text-white">
           <MDBNavbarBrand href="#" className="me-4 text-white">
             METROZONE GROUP
