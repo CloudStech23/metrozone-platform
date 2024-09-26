@@ -1,0 +1,60 @@
+.custom-drawer {
+  background-color: #101010;
+  /* Dark background */
+  color: white;
+}
+
+.drawer-content {
+  width: 320px;
+  /* Width of drawer */
+  padding: 1rem;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4db1e8;
+  /* Light blue color */
+  margin-bottom: 1rem;
+}
+
+.focus-areas-section {
+  margin-top: 2rem;
+}
+
+.focus-categories h4 {
+  color: #4db1e8;
+  /* Light blue color */
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.icon-box {
+  width: 48%;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  background-color: #1f1f1f;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.icon p {
+  color: #9b9b9b;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.tg-btn:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
