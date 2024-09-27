@@ -25,6 +25,27 @@ const events = [
     category: "Conference",
     image_url: "https://mdbootstrap.com/img/new/standard/nature/184.webp",
   },
+  {
+    event_name: "Nature Photography Workshop",
+    date: "25th September 2024",
+    location: "New York City",
+    category: "Workshop",
+    image_url: "https://mdbootstrap.com/img/new/standard/nature/186.webp",
+  },
+  {
+    event_name: "Art and Culture Expo",
+    date: "5th October 2024",
+    location: "Los Angeles",
+    category: "Exhibition",
+    image_url: "https://mdbootstrap.com/img/new/standard/nature/185.webp",
+  },
+  {
+    event_name: "Tech Innovation Conference",
+    date: "15th November 2024",
+    location: "San Francisco",
+    category: "Conference",
+    image_url: "https://mdbootstrap.com/img/new/standard/nature/184.webp",
+  },
 ];
 
 function Event() {
@@ -107,9 +128,9 @@ function Event() {
               }}
             >
               <h4 style={{ margin: 0 }}>{event.event_name}</h4>
-              <span style={{ margin: "5px 0" }}>{event.location}</span>
-              <span style={{ margin: "5px 0", display: "block" }}>{event.date}</span>
-              <Link to="/E_page"><i class="fa fa-arrow-right w-100" aria-hidden="true"></i></Link>
+              <span style={{ margin: "3px 0" }}>{event.location}</span>
+              <span style={{ margin: "3px 0", display: "block" }}>{event.date}</span>
+              <Link to="/E_page"><i class="bi bi-arrow-right fs-4 text-white"></i></Link>
             </div>
           </MDBCard>
         </MDBCol>

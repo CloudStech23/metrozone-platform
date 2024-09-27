@@ -40,7 +40,7 @@ function Main() {
         </div>
 
         <MDBContainer className="py-4 mx-auto">
-          <h2 className="text-primary  pb-3" style={{ fontSize: "22px" }}>
+          <h2 className="text-primary  pb-2" style={{ fontSize: "22px" }}>
             Our Approach
           </h2>
           <hr />
@@ -48,18 +48,16 @@ function Main() {
           <MDBRow className="justify-content-center">
             {/* Card 1 */}
             <MDBCol md="6" lg="3" sm="12" className="mb-4">
-              <MDBCard className="shadow-sm text-center h-100">
+              <MDBCard className=" text-center h-100">
                 <MDBCardImage
                   src="https://www.tatasustainability.com/images/CSR-Main/icon1.svg"
                   alt="CSR Icon"
                   className="img-fluid mx-auto"
-                  style={{ maxWidth: "100px" }}
+                  // style={{ maxWidth: "100px" }}
                   top
                 />
-                <MDBCardBody>
-                  <div className="text-primary fs-6 fw-bold text-decoration-underline">
-                    1
-                  </div>
+                <MDBCardBody >
+                  
                   <h5 className="fw-bold fs-5 text-secondary py-2">
                     Beyond Compliance
                   </h5>
@@ -83,9 +81,7 @@ function Main() {
                   top
                 />
                 <MDBCardBody>
-                  <div className="text-primary fs-6 fw-bold text-decoration-underline">
-                    2
-                  </div>
+                  
                   <h5 className="fw-bold fs-5 text-secondary py-2">
                     Beyond Compliance
                   </h5>
@@ -109,9 +105,7 @@ function Main() {
                   top
                 />
                 <MDBCardBody>
-                  <div className="text-primary fs-6 fw-bold text-decoration-underline">
-                    3
-                  </div>
+                  
                   <h5 className="fw-bold fs-5 text-secondary py-2">
                     Beyond Compliance
                   </h5>
@@ -135,9 +129,7 @@ function Main() {
                   top
                 />
                 <MDBCardBody>
-                  <div className="text-primary fs-6 fw-bold text-decoration-underline">
-                    4
-                  </div>
+                  
                   <h5 className="fw-bold fs-5 text-secondary py-2">
                     Beyond Compliance
                   </h5>
@@ -152,7 +144,7 @@ function Main() {
           </MDBRow>
           <hr />
         </MDBContainer>
-        <MDBContainer className=" mt-5 mx-auto">
+        <MDBContainer className=" mt-5 mb-5 mx-auto">
           <h2 className="text-primary pb-1 " style={{ fontSize: "22px" }}>
             Events
           </h2>{" "}

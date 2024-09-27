@@ -12,31 +12,39 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { Button } from "@mui/material";
+import { Collapse, Divider } from "@mui/material";
 
 function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [padding, setPadding] = useState("1rem 13rem");
+  const [isMobile, setIsMobile] = useState(false);
+  const [openAbout, setOpenAbout] = useState(false);
+  const [openServices, setOpenServices] = useState(false);
 
-  // Handle window resize for responsive padding
   const handleResize = () => {
-    if (window.innerWidth < 768) {
-      setPadding("0rem 1rem"); // Reduced padding for mobile
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+      setIsMobile(true);
     } else {
-      setPadding("1rem 13rem"); // Default padding for desktop
+      setIsMobile(false);
     }
   };
 
-  // Attach event listener on component mount and cleanup on unmount
+  const handleAboutToggle = () => {
+    setOpenAbout(!openAbout);
+  };
+  const handleServicesToggle = () => {
+    setOpenServices(!openServices);
+  };
+
   useEffect(() => {
-    handleResize(); // Set initial padding
-    window.addEventListener("resize", handleResize); // Add event listener for resize
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize); // Clean up event listener on unmount
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // Toggle the state of the drawer
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -49,47 +57,49 @@ function Navbar() {
 
   return (
     <>
-      <MDBNavbar light bgColor="transparent" style={{zIndex:2}}>
+      <MDBNavbar light bgColor="transparent" style={{ zIndex: 2 }}>
         <MDBContainer
           fluid
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: padding, // Responsive padding
+            padding: isMobile ? "0rem 1rem" : "1rem 13rem",
             position: "relative",
             marginTop: "2rem",
           }}
         >
           {/* Hamburger Menu */}
-          <btn
+          <Button
             aria-label=""
-            onClick={toggleDrawer(true)} // Open drawer on click
+            onClick={toggleDrawer(true)}
             style={{
               margin: "0",
               padding: "0",
               border: "none",
               backgroundColor: "transparent",
               color: "white",
-              cursor:'pointer'
+              cursor: "pointer",
             }}
             className="text-white tg-btn"
           >
-            <i class="fa fa-bars text-white fs-2"  aria-hidden="true"></i>
-          </btn>
+            <i class="fa fa-bars text-white fs-2" aria-hidden="true"></i>
+          </Button> 
+          <span className="text-white fs-4 d-xl-block d-none" style={{fontFamily:"Lato, sans-serif"}}>METROZONE Group Activities</span>
 
           {/* Tata Logo */}
           <MDBNavbarBrand
-            href="https://www.tata.com/"
+            href=" "
             target="_blank"
             style={{ marginLeft: "auto" }}
           >
             <img
-              src="https://www.tatasustainability.com/images/TATA-logo.svg"
+              src="http://www.metrozonegroup.com/images/logo.png"
               height="30"
+              
               alt="Tata Logo"
               loading="lazy"
-              style={{ marginRight: "10px" }} // Adjust right margin as needed
+              style={{ marginRight: "10px" }}
             />
           </MDBNavbarBrand>
         </MDBContainer>
@@ -97,302 +107,282 @@ function Navbar() {
 
       {/* Material-UI Drawer from top */}
       <Drawer
-        anchor="top" // Drawer slides from the top
+        anchor={isMobile ? "left" : "top"}
         open={isDrawerOpen}
-        onClose={toggleDrawer(false)} // Close drawer on click outside
-        className=""
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: {
+            width: isMobile ? "70%" : "100%",
+          },
+        }}
       >
-        {/* <List>
-          <ListItem button onClick={toggleDrawer(false)}>
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button onClick={toggleDrawer(false)}>
-            <ListItemText primary="About Us" />
-          </ListItem>
-          <ListItem button onClick={toggleDrawer(false)}>
-            <ListItemText primary="Services" />
-          </ListItem>
-          <ListItem button onClick={toggleDrawer(false)}>
-            <ListItemText primary="Contact" />
-          </ListItem>
-        </List> */}
-
-        <div
-          className="text-white"
-          style={{ padding: "3rem 12rem", background: "#1d2739 " }}
-        >
-          <a
-            className=""
-            style={{ cursor: "pointer" }}
-            onClick={toggleDrawer(false)}
-          >
-            {/* <i class="fa fa-times fs-1 text-danger mb-3" aria-hidden="true"></i> */}
-            <Button className=" bg-danger text-white mb-4">Close</Button>
-          </a>
-          <div className="row gx-5">
-            <div className="col-2">
-              <div className="">
-                <h3 className="text-primary fw-bold">About us</h3> <hr />
-                <div className="pt-1">
-                  <div className="nav-text pb-2">
-                    <a
-                      href="https://www.tatasustainability.com/AboutUs/TheTataGroup"
-                      className="text-white text-decoration-none"
-                    >
-                      The Tata Group
-                    </a>
-                  </div>
-                  <div className="nav-text pb-2">
-                    <a
-                      href="https://www.tatasustainability.com/AboutUs/TataSustainabilityGroup"
-                      className="text-white text-decoration-none"
-                    >
-                      Tata Sustainability
-                      <br />
-                      Group
-                    </a>
-                  </div>
-                  <div className="nav-text pb-2">
-                    <a
-                      href="https://www.tatasustainability.com/AboutUs/OurApproach"
-                      className="text-white text-decoration-none"
-                    >
-                      How We Approach Sustainability
-                    </a>
-                  </div>
-                  <div className="nav-text pb-2">
-                    <a
-                      href="https://www.tatasustainability.com/AboutUs/ContactUs"
-                      className="text-white text-decoration-none"
-                    >
-                      Contact Us
-                    </a>
-                  </div>
-                </div>
-              </div>
+        {/* Conditional Content based on screen size */}
+        {isMobile ? (
+          <div className="bg-light">
+            <div style={{ padding: "1rem", textAlign: "center" }}>
+              {/* Logo Space */}
+              <img
+                src="http://www.metrozonegroup.com/images/logo.png"
+                height="40"
+                alt="Logo"
+                style={{ marginBottom: "1rem" }}
+              />
             </div>
-            <div className="col-7">
-              <div>
-                <h3 className="text-primary fw-bold">Focus Area</h3> <hr />
+            <Divider />
+            <List
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <ListItem button onClick={toggleDrawer(false)}>
+                <ListItemText primary="Home" />
+              </ListItem>
+
+              {/* About Us Section */}
+              <ListItem button onClick={handleAboutToggle}>
+                <ListItemText primary="About Us" />
+              </ListItem>
+              <Collapse in={openAbout} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItemText
+                      primary="The Metrozone Group"
+                      sx={{ pl: 4 }}
+                    />
+                  </ListItem>
+                  <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItemText
+                      primary="Sustainability Approach"
+                      sx={{ pl: 4 }}
+                    />
+                  </ListItem>
+                  <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItemText primary="Contact Us" sx={{ pl: 4 }} />
+                  </ListItem>
+                </List>
+              </Collapse>
+
+              {/* Services Section */}
+              <ListItem button onClick={handleServicesToggle}>
+                <ListItemText primary="Services" />
+              </ListItem>
+              <Collapse in={openServices} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItemText primary="Web Development" sx={{ pl: 4 }} />
+                  </ListItem>
+                  <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItemText primary="App Development" sx={{ pl: 4 }} />
+                  </ListItem>
+                  <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItemText primary="Cloud Solutions" sx={{ pl: 4 }} />
+                  </ListItem>
+                  <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItemText primary="DevOps Services" sx={{ pl: 4 }} />
+                  </ListItem>
+                </List>
+              </Collapse>
+
+              <ListItem button onClick={toggleDrawer(false)}>
+                <ListItemText primary="Contact" />
+              </ListItem>
+            </List>
+          </div>
+        ) : (
+          <div
+            className="text-white"
+            style={{
+              padding: "3rem 12rem",
+              background: "#1d2739",
+            }}
+          >
+            <a
+              className=""
+              style={{ cursor: "pointer" }}
+              onClick={toggleDrawer(false)}
+            >
+              {/* <i class="fa fa-times fs-1 text-danger mb-3" aria-hidden="true"></i> */}
+              <Button className=" bg-danger text-white mb-4">Close</Button>
+            </a>
+            <div className="row gx-5">
+              <div className="col-2">
+                <div className="">
+                  <h3 className="text-primary fw-bold">About us</h3>
+                  <hr />
+                  <div className="pt-1">
+                    <div className="nav-text pb-2">
+                      <a href=" " className="text-white text-decoration-none">
+                        The Metrozone Group
+                      </a>
+                    </div>
+
+                    <div className="nav-text pb-2">
+                      <a href=" " className="text-white text-decoration-none">
+                        How We Approach Sustainability
+                      </a>
+                    </div>
+                    <div className="nav-text pb-2">
+                      <a href=" " className="text-white text-decoration-none">
+                        Contact Us
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="row bottomP15 borNav">
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                  <div className="navTitle bottomP18">
-                    {/* <table width="100%" cellPadding="0" cellSpacing="0">
-                      <tbody>
-                        <tr>
-                          <td width="10">
-                            <svg
-                              height="12"
-                              width="4"
-                              viewBox="0 0 4 12"
-                              xmlns="https://www.w3.org/2000/svg"
-                            >
-                              <rect className="a" height="12" width="4" />
-                            </svg>
-                          </td>
-                          <td className="text-decoration-none">
-                            <a className="text-decoration-none text-white" href="https://www.tatasustainability.com/SocialAndHumanCapital/CSR#">
-                              Environment
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table> */}
-                  </div>
+              <div className="col-7">
+                <div>
+                  <h3 className="text-primary fw-bold">Focus Area</h3>
+                  <hr />
                 </div>
+                <div className="row bottomP15 borNav">
+                  <div className="fs-6 text-primary mb-3 mx-2 border-start border-3 border-primary ps-2">
+                    Categories
+                  </div>
 
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/ClimateChange">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/ClimateChangeEnergy.png"
-                        className="iconImage"
-                      />
-                    </a>
+                  <div className="col-lg-3 col-md-2 col-sm-12 text-center ">
+                    <div className="bottomP8">
+                      <a href="https://www.tatasustainability.com/Environment/ClimateChange">
+                        <img
+                          src="https://www.tatasustainability.com/images/Menu/ClimateChangeEnergy.png"
+                          className="iconImage"
+                        />
+                      </a>
+                    </div>
+                    <div className="subNav">
+                      <a href=" " className="text-white text-decoration-none">
+                        Climate Change <br />
+                        Energy
+                      </a>
+                    </div>
                   </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/ClimateChange">
-                      Climate Change <br />& Energy
-                    </a>
-                  </div>
-                </div>
 
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/Water">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/Water.png"
-                        className="iconImage"
-                      />
-                    </a>
+                  <div className="col-lg-3 col-md-2 col-sm-12 text-center">
+                    <div className="bottomP8">
+                      <a href="https://www.tatasustainability.com/Environment/Water">
+                        <img
+                          src="https://www.tatasustainability.com/images/Menu/Water.png"
+                          className="iconImage"
+                        />
+                      </a>
+                    </div>
+                    <div className="subNav">
+                      <a href=" " className="text-white text-decoration-none">
+                        Water
+                      </a>
+                    </div>
                   </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/Water">
-                      Water
-                    </a>
-                  </div>
-                </div>
 
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/CircularEconomy">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/circular-economy.png"
-                        className="iconImage"
-                      />
-                    </a>
+                  <div className="col-lg-3 col-md-2 col-sm-12 text-center">
+                    <div className="bottomP8">
+                      <a href="https://www.tatasustainability.com/Environment/CircularEconomy">
+                        <img
+                          src="https://www.tatasustainability.com/images/Menu/circular-economy.png"
+                          className="iconImage"
+                        />
+                      </a>
+                    </div>
+                    <div className="subNav">
+                      <a href=" " className="text-white text-decoration-none">
+                        Circular <br />
+                        Economy
+                      </a>
+                    </div>
                   </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/CircularEconomy">
-                      Circular <br />
-                      Economy
-                    </a>
-                  </div>
-                </div>
 
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/Biodiversity">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/Biodiversity.png"
-                        className="iconImage"
-                      />
-                    </a>
+                  <div className="col-lg-3 col-md-2 col-sm-12 text-center">
+                    <div className="bottomP8">
+                      <a href="https://www.tatasustainability.com/Environment/Biodiversity">
+                        <img
+                          src="https://www.tatasustainability.com/images/Menu/Biodiversity.png"
+                          className="iconImage"
+                        />
+                      </a>
+                    </div>
+                    <div className="subNav">
+                      <a href=" " className="text-white text-decoration-none">
+                        Biodiversity
+                      </a>
+                    </div>
                   </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/Biodiversity">
-                      Biodiversity
-                    </a>
+                </div>{" "}
+                <hr />
+                <div className="row bottomP15 borNav">
+                  <div className="fs-6 text-primary mb-3 mx-2 border-start border-3 border-primary ps-2">
+                    Social
                   </div>
-                </div>
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/Biodiversity">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/Biodiversity.png"
-                        className="iconImage"
-                      />
-                    </a>
-                  </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/Biodiversity">
-                      Biodiversity
-                    </a>
-                  </div>
-                </div>
-              </div>{" "}
-              <hr />
-              <div className="row bottomP15 borNav">
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                  <div className="navTitle bottomP18">
-                    {/* <table width="100%" cellPadding="0" cellSpacing="0">
-                      <tbody>
-                        <tr>
-                          <td width="10">
-                            <svg
-                              height="12"
-                              width="4"
-                              viewBox="0 0 4 12"
-                              xmlns="https://www.w3.org/2000/svg"
-                            >
-                              <rect className="a" height="12" width="4" />
-                            </svg>
-                          </td>
-                          <td className="text-decoration-none">
-                            <a className="text-decoration-none text-white" href="https://www.tatasustainability.com/SocialAndHumanCapital/CSR#">
-                              Environment
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table> */}
-                  </div>
-                </div>
 
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/ClimateChange">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/ClimateChangeEnergy.png"
-                        className="iconImage"
-                      />
-                    </a>
+                  <div className="col-lg-3 col-md-2 col-sm-12 text-center ">
+                    <div className="bottomP8">
+                      <a href="https://www.tatasustainability.com/Environment/ClimateChange">
+                        <img
+                          src="https://www.tatasustainability.com/images/Menu/ClimateChangeEnergy.png"
+                          className="iconImage"
+                        />
+                      </a>
+                    </div>
+                    <div className="subNav">
+                      <a href=" " className="text-white text-decoration-none">
+                        Climate Change <br />
+                        Energy
+                      </a>
+                    </div>
                   </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/ClimateChange">
-                      Climate Change <br />& Energy
-                    </a>
-                  </div>
-                </div>
 
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/Water">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/Water.png"
-                        className="iconImage"
-                      />
-                    </a>
+                  <div className="col-lg-3 col-md-2 col-sm-12 text-center">
+                    <div className="bottomP8">
+                      <a href="https://www.tatasustainability.com/Environment/Water">
+                        <img
+                          src="https://www.tatasustainability.com/images/Menu/Water.png"
+                          className="iconImage"
+                        />
+                      </a>
+                    </div>
+                    <div className="subNav">
+                      <a href=" " className="text-white text-decoration-none">
+                        Water
+                      </a>
+                    </div>
                   </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/Water">
-                      Water
-                    </a>
-                  </div>
-                </div>
 
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/CircularEconomy">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/circular-economy.png"
-                        className="iconImage"
-                      />
-                    </a>
+                  <div className="col-lg-3 col-md-2 col-sm-12 text-center">
+                    <div className="bottomP8">
+                      <a href="https://www.tatasustainability.com/Environment/CircularEconomy">
+                        <img
+                          src="https://www.tatasustainability.com/images/Menu/circular-economy.png"
+                          className="iconImage"
+                        />
+                      </a>
+                    </div>
+                    <div className="subNav">
+                      <a href=" " className="text-white text-decoration-none">
+                        Circular <br />
+                        Economy
+                      </a>
+                    </div>
                   </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/CircularEconomy">
-                      Circular <br />
-                      Economy
-                    </a>
-                  </div>
-                </div>
 
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/Biodiversity">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/Biodiversity.png"
-                        className="iconImage"
-                      />
-                    </a>
-                  </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/Biodiversity">
-                      Biodiversity
-                    </a>
-                  </div>
-                </div>
-                <div className="col-lg-2 col-md-2 col-sm-12 text-center">
-                  <div className="bottomP8">
-                    <a href="https://www.tatasustainability.com/Environment/Biodiversity">
-                      <img
-                        src="https://www.tatasustainability.com/images/Menu/Biodiversity.png"
-                        className="iconImage"
-                      />
-                    </a>
-                  </div>
-                  <div className="subNav">
-                    <a href="https://www.tatasustainability.com/Environment/Biodiversity">
-                      Biodiversity
-                    </a>
+                  <div className="col-lg-3 col-md-2 col-sm-12 text-center">
+                    <div className="bottomP8">
+                      <a href="https://www.tatasustainability.com/Environment/Biodiversity">
+                        <img
+                          src="https://www.tatasustainability.com/images/Menu/Biodiversity.png"
+                          className="iconImage"
+                        />
+                      </a>
+                    </div>
+                    <div className="subNav">
+                      <a href=" " className="text-white text-decoration-none">
+                        Biodiversity
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>{" "}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </Drawer>
     </>
   );
