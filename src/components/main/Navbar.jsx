@@ -13,17 +13,22 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { Button } from "@mui/material";
 import { Collapse, Divider } from "@mui/material";
+import Logo from "../../Images/Metrozone-logo(big).png"
+
 
 function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [openAbout, setOpenAbout] = useState(false);
   const [openServices, setOpenServices] = useState(false);
+  const [Logoimg , setLogoimg] = useState(Logo)
 
   const handleResize = () => {
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
       setIsMobile(true);
+      setLogoimg("http://www.metrozonegroup.com/images/logo.png")
+
     } else {
       setIsMobile(false);
     }
@@ -94,12 +99,12 @@ function Navbar() {
             style={{ marginLeft: "auto" }}
           >
             <img
-              src="http://www.metrozonegroup.com/images/logo.png"
-              height="30"
+              src={Logoimg}
+               style={{  height: "40px",marginRight:'10px' }}
               
-              alt="Tata Logo"
+              alt="Metrozone Logo"
               loading="lazy"
-              style={{ marginRight: "10px" }}
+               
             />
           </MDBNavbarBrand>
         </MDBContainer>
