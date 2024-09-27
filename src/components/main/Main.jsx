@@ -9,6 +9,7 @@ import {
   MDBCardBody,
   MDBCardImage,
 } from "mdb-react-ui-kit";
+import Event from "./Event";
 
 function Main() {
   return (
@@ -16,9 +17,7 @@ function Main() {
       <Carousel />
 
       <div className="container custom-container">
-        <div className="clear bodyP"></div>
-
-        <div className="containerBody">
+        <div className="containerBody py-5">
           <div className="bodytextPara">
             Our CSR programmes aim to be relevant to local, national, and global
             contexts, keep disadvantaged communities as the focus based on
@@ -38,17 +37,13 @@ function Main() {
             skill development, rural development, water and sanitation,
             healthcare, and strengthening services.
           </div>
-
-          <div className="clear bottomP60"></div>
         </div>
 
         <MDBContainer className="py-4 mx-auto">
-          <h2
-            className="text-primary border-bottom pb-3"
-            style={{ fontSize: "22px" }}
-          >
+          <h2 className="text-primary  pb-3" style={{ fontSize: "22px" }}>
             Our Approach
           </h2>
+          <hr />
 
           <MDBRow className="justify-content-center">
             {/* Card 1 */}
@@ -155,6 +150,14 @@ function Main() {
               </MDBCard>
             </MDBCol>
           </MDBRow>
+          <hr />
+        </MDBContainer>
+        <MDBContainer className=" mt-5 mx-auto">
+          <h2 className="text-primary pb-1 " style={{ fontSize: "22px" }}>
+            Events
+          </h2>{" "}
+          <hr />
+          <Event />
         </MDBContainer>
       </div>
     </div>

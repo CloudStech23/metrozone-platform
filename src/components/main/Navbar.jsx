@@ -49,7 +49,7 @@ function Navbar() {
 
   return (
     <>
-      <MDBNavbar light bgColor="transparent">
+      <MDBNavbar light bgColor="transparent" style={{zIndex:2}}>
         <MDBContainer
           fluid
           style={{
@@ -71,10 +71,11 @@ function Navbar() {
               border: "none",
               backgroundColor: "transparent",
               color: "white",
+              cursor:'pointer'
             }}
             className="text-white tg-btn"
           >
-            <i class="fa fa-bars text-white fs-2" aria-hidden="true"></i>
+            <i class="fa fa-bars text-white fs-2"  aria-hidden="true"></i>
           </btn>
 
           {/* Tata Logo */}
