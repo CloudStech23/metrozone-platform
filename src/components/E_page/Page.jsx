@@ -251,7 +251,7 @@ function Epage() {
                     <i className="fa fa-globe display-2" aria-hidden="true"></i>
                   </div>
                   <div>
-                    <h3 className="fs-2 fs-md-2 fw-bold mb-0">Jammu Kashmir, India, world</h3>{" "}
+                    <h3 className="fs-2 fs-md-2 fw-bold mb-0">Jammu & Kashmir</h3>{" "}
                     {/* Adjusted font size for mobile */}
                     <p className="fs-6 fs-md-5 text-center">
                       Where  our CSR initiative for

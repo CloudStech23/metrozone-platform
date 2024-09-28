@@ -33,23 +33,28 @@ function Carousel() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        setFade(true);
-      }, 700);
+      if (!isPaused) {
+        setFade(false);
+        setTimeout(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+          setFade(true);
+        }, 700);
+      }
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [images.length, isPaused]);
 
   return (
     <div
       className="bg-CSR"
       style={{ minHeight: "464px", position: "relative" }}
+      onMouseEnter={() => setIsPaused(true)} // Pause on hover
+      onMouseLeave={() => setIsPaused(false)} // Resume on mouse leave
     >
       <Navbar />
       <div
@@ -77,8 +82,6 @@ function Carousel() {
               opacity: fade ? 1 : 0,
               transition: "opacity 1s ease-in-out",
               objectPosition: "top",
-              // filter: "blur(0.5px)",
-              // backgroundBlendMode:'multiply'
             }}
           />
           <div
@@ -88,7 +91,7 @@ function Carousel() {
               left: 0,
               width: "100%",
               height: "100%",
-              background: "rgb(0 0 0 / 50%)", // Black overlay with transparency
+              background: "rgb(0 0 0 / 50%)",
               zIndex: 1,
             }}
           />
