@@ -71,7 +71,7 @@ function Navbar() {
             alignItems: "center",
             padding: isMobile ? "0rem 1rem" : "1rem 13rem",
             position: "relative",
-            marginTop: "2rem",
+            marginTop: "1rem",
           }}
         >
           {/* Hamburger Menu */}
@@ -248,7 +248,7 @@ function Navbar() {
 
                   <div className="col-lg-3 col-md-2 col-sm-12 text-center ">
                     <div className="bottomP8">
-                      <a href="https://www.tatasustainability.com/Environment/ClimateChange">
+                      <a href=" ">
                         <img
                           src="https://www.tatasustainability.com/images/Menu/ClimateChangeEnergy.png"
                           className="iconImage"
@@ -265,7 +265,7 @@ function Navbar() {
 
                   <div className="col-lg-3 col-md-2 col-sm-12 text-center">
                     <div className="bottomP8">
-                      <a href="https://www.tatasustainability.com/Environment/Water">
+                      <a href=" ">
                         <img
                           src="https://www.tatasustainability.com/images/Menu/Water.png"
                           className="iconImage"
@@ -281,7 +281,7 @@ function Navbar() {
 
                   <div className="col-lg-3 col-md-2 col-sm-12 text-center">
                     <div className="bottomP8">
-                      <a href="https://www.tatasustainability.com/Environment/CircularEconomy">
+                      <a href=" ">
                         <img
                           src="https://www.tatasustainability.com/images/Menu/circular-economy.png"
                           className="iconImage"
@@ -298,7 +298,7 @@ function Navbar() {
 
                   <div className="col-lg-3 col-md-2 col-sm-12 text-center">
                     <div className="bottomP8">
-                      <a href="https://www.tatasustainability.com/Environment/Biodiversity">
+                      <a href=" ">
                         <img
                           src="https://www.tatasustainability.com/images/Menu/Biodiversity.png"
                           className="iconImage"
@@ -320,7 +320,7 @@ function Navbar() {
 
                   <div className="col-lg-3 col-md-2 col-sm-12 text-center ">
                     <div className="bottomP8">
-                      <a href="https://www.tatasustainability.com/Environment/ClimateChange">
+                      <a href=" ">
                         <img
                           src="https://www.tatasustainability.com/images/Menu/ClimateChangeEnergy.png"
                           className="iconImage"
@@ -337,7 +337,7 @@ function Navbar() {
 
                   <div className="col-lg-3 col-md-2 col-sm-12 text-center">
                     <div className="bottomP8">
-                      <a href="https://www.tatasustainability.com/Environment/Water">
+                      <a href=" ">
                         <img
                           src="https://www.tatasustainability.com/images/Menu/Water.png"
                           className="iconImage"
@@ -353,7 +353,7 @@ function Navbar() {
 
                   <div className="col-lg-3 col-md-2 col-sm-12 text-center">
                     <div className="bottomP8">
-                      <a href="https://www.tatasustainability.com/Environment/CircularEconomy">
+                      <a href=" ">
                         <img
                           src="https://www.tatasustainability.com/images/Menu/circular-economy.png"
                           className="iconImage"
@@ -370,7 +370,7 @@ function Navbar() {
 
                   <div className="col-lg-3 col-md-2 col-sm-12 text-center">
                     <div className="bottomP8">
-                      <a href="https://www.tatasustainability.com/Environment/Biodiversity">
+                      <a href=" ">
                         <img
                           src="https://www.tatasustainability.com/images/Menu/Biodiversity.png"
                           className="iconImage"

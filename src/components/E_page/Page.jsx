@@ -33,13 +33,13 @@ function Epage() {
 
   const images = [
     {
-      src: "https://www.tatasustainability.com/images/Banners/CSR-Banner.jpg",
+      src: img6,
 
-      title: "Tech Innovation Conference",
+      title: "Medical Camp in Urban Area",
       tag: "Health-Care",
       date: "12 Sept 2024",
       location: "Jammu Kashmir",
-      partner: "Tata Consultancy Services",
+      partner: "Metrozone Group",
     },
     {
       src: "https://www.tatasustainability.com/images/Banners/CSR-Banner.jpg", // Add more images with this format
@@ -73,6 +73,16 @@ function Epage() {
         style={{ paddingTop: "123px", clear: "both" }}
       />
       <div className="container" style={{ maxWidth: "1210px", width: "100%" }}>
+      <div
+          style={{
+            width: "100%",
+            height: "464px",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            overflow: "hidden",
+          }}
+        >
         <img
           src={images[currentIndex].src}
           alt="Carousel Background"
@@ -88,6 +98,18 @@ function Epage() {
             objectPosition: "top",
           }}
         />
+
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        />
+        </div>
         <div style={{ position: "relative", zIndex: 1 }}>
           <div
             className="captionPL"
@@ -109,13 +131,13 @@ function Epage() {
             >
               {images[currentIndex].tag}
             </div>
-            {/* <span style={{}} className="my-2 mx-4 fs-4 d-block">
-                Partnering with {images[currentIndex].partner}
-              </span> */}
+            <div style={{}} className="fs-5 mt-2">
+                {images[currentIndex].partner}
+              </div>
             <div
               className="bannerT topP20 col-4"
               style={{
-                paddingTop: "20px",
+                paddingTop: "10px",
                 fontFamily: "Lato, sans-serif",
                 fontWeight: "700",
                 fontSize: "43px",
@@ -138,56 +160,104 @@ function Epage() {
           </div>
         </div>
       </div>
-      <div className="" style={{ marginTop: "4rem" }}>
-        <div className="container">
-          <div className="row justify-content-center  text-center">
-            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-              <div
-                className="card py-4 rounded"
-                style={{ background: "#ff762f" }}
-              >
-                <div className="card-body d-flex justify-content-center align-items-center text-white">
+      <div className="container" style={{ marginTop: "2.7rem" }}>
+        <div className="row justify-content-center">
+          {/* Single card containing all sections */}
+          <div className="col-lg-10 col-md-12">
+            <div
+              className="card rounded py-4"
+              style={{ background: "rgb(71 104 176)" }}
+            >
+              <div className="card-body d-flex flex-column flex-md-row justify-content-between align-items-center text-white">
+                {/* Section 1 */}
+                <div
+                  className="d-flex justify-content-center align-items-center text-center mb-3 mb-md-0"
+                  style={{ flex: 1 }}
+                >
                   <div className="me-3">
-                    <i class="fa fa-users display-2" aria-hidden="true"></i>
+                    <i className="fa fa-users display-2" aria-hidden="true"></i>
                   </div>
                   <div>
-                    <h3 className="fs-1 fw-bold mb-0"><CountUp start={0} end={40000} duration={3} separator="," /></h3>
-                    <p className="fs-5">Millions of earners</p>
+                    <h3 className="fs-1 fs-md-1 fw-bold mb-0">
+                      {" "}
+                      {/* Adjusted font size for mobile */}
+                      <CountUp
+                        start={0}
+                        end={40000}
+                        duration={3}
+                        separator=","
+                      />
+                    </h3>
+                    <p className="fs-6 fs-md-5">
+                      Beneficiaries took part in the event
+                    </p>{" "}
+                    {/* Adjusted font size for mobile */}
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-              <div
-                className="card   py-4 rounded"
-                style={{ background: "#cb005c" }}
-              >
-                <div className="card-body d-flex justify-content-center align-items-center text-white">
+
+                {/* Vertical separator */}
+                <div
+                  className="vertical-separator mx-4 d-none d-md-block" // Hide on mobile
+                  style={{
+                    width: "2px",
+                    backgroundColor: "#fff",
+                    height: "80px",
+                  }}
+                ></div>
+
+                {/* Section 2 */}
+                <div
+                  className="d-flex justify-content-center align-items-center text-center mb-3 mb-md-0"
+                  style={{ flex: 1 }}
+                >
                   <div className="me-3">
                     <i
-                      class="bi bi-currency-rupee display-2"
+                      className="bi bi-currency-rupee display-2"
                       aria-hidden="true"
                     ></i>
                   </div>
                   <div>
-                    <h3 className="fs-1 fw-bold mb-0"><CountUp start={0} end={100000} duration={3} separator="," /></h3>
-                    <p className="fs-5">Millions of earners</p>
+                    <h3 className="fs-1 fs-md-1 fw-bold mb-0">
+                      {" "}
+                      {/* Adjusted font size for mobile */}
+                      <CountUp
+                        start={0}
+                        end={100000}
+                        duration={3}
+                        separator=","
+                      />
+                    </h3>
+                    <p className="fs-6 fs-md-5">Costs incurred for the event</p>{" "}
+                    {/* Adjusted font size for mobile */}
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-              <div
-                className="card   py-4 rounded"
-                style={{ background: "#2a226e" }}
-              >
-                <div className="card-body d-flex justify-content-center align-items-center text-white">
+
+                {/* Vertical separator */}
+                <div
+                  className="vertical-separator mx-4 d-none d-md-block" // Hide on mobile
+                  style={{
+                    width: "2px",
+                    backgroundColor: "#fff",
+                    height: "80px",
+                  }}
+                ></div>
+
+                {/* Section 3 */}
+                <div
+                  className="d-flex justify-content-center align-items-center text-center"
+                  style={{ flex: 1 }}
+                >
                   <div className="me-3">
-                    <i class="fa fa-globe display-2" aria-hidden="true"></i>
+                    <i className="fa fa-globe display-2" aria-hidden="true"></i>
                   </div>
                   <div>
-                    <h3 className="fs-2 fw-bold mb-0">Jammu Kashmir</h3>
-                    <p className="fs-5">events in diff locations</p>
+                    <h3 className="fs-2 fs-md-2 fw-bold mb-0">Jammu Kashmir, India, world</h3>{" "}
+                    {/* Adjusted font size for mobile */}
+                    <p className="fs-6 fs-md-5 text-center">
+                      Where  our CSR initiative for
+                      community support
+                    </p>{" "}
+                    {/* Adjusted font size for mobile */}
                   </div>
                 </div>
               </div>
@@ -202,31 +272,28 @@ function Epage() {
           </h2>
           <hr />
           <div className="bodytextPara">
-            Our CSR programmes aim to be relevant to local, national, and global
-            contexts, keep disadvantaged communities as the focus based on
-            globally agreed sustainable development principles and be
-            implemented in partnership with governments, NGOs, and other
-            relevant stakeholders. Tata companies are involved in a wide variety
-            of community development and environment preservation projects.
+            Our CSR initiatives focus on supporting local and national
+            communities, particularly those disadvantaged, through sustainable
+            development practices. We collaborate with governments, NGOs, and
+            key stakeholders to drive positive change. The Metrozone Group has
+            been actively involved in community development, healthcare,
+            education, and environmental projects. Over the past year, we have
+            invested INR 1,095 crore, positively impacting over 11.7 million
+            lives
           </div>
 
-          <div className="bodytextPara aos-init aos-animate">
-            In FY19, the group has spent INR 1,095 crore on CSR expenditure and
-            has positively impacted 11.7 million lives.
-          </div>
-
-          <div className="bodytext aos-init aos-animate">
+          {/* <div className="bodytext aos-init aos-animate">
             The Tata group’s activities relate to education, livelihoods and
             skill development, rural development, water and sanitation,
             healthcare, and strengthening services.
-          </div>
+          </div> */}
         </div>
       </div>
 
       <div className="container">
         <div className="containerBody mt-2 py-2  ">
-          <h2 className="text-primary pb-1" style={{ fontSize: "22px" }}>
-            Other Initiatives in Education and Holistic Development
+          <h2 className="text-primary pb-1 fw-light" style={{ fontSize: "22px" }}>
+          Capturing the Essence of Our Community Efforts
           </h2>
           <div className="yellow-line" />
         </div>
@@ -234,11 +301,11 @@ function Epage() {
         <div className="row justify-content-center">
           <div
             className="col-10 col-md-9 mt-2 mb-5"
-            style={{
-              maxHeight: "35rem",
-              overflowY: "scroll",
-              scrollbarWidth: "thin",
-            }}
+            // style={{
+            //   maxHeight: "35rem",
+            //   overflowY: "scroll",
+            //   scrollbarWidth: "thin",
+            // }}
           >
             <div
               style={{

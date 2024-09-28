@@ -1,37 +1,47 @@
 import React, { useEffect, useState } from "react";
 import "./Main.css";
 import Navbar from "./Navbar";
-import img2 from '../../Images/caro-img/UP GOVT FELICITATION.jpeg'
+import img2 from "../../Images/caro-img/GOC 31SA.jpeg";
+import img3 from "../../Images/caro-img/Stationary Distribution at Western Laddakh Schools 2016.jpeg";
+import img1 from "../../Images/caro-img/UP GOVT FELICITATION.jpeg";
 
 function Carousel() {
   const images = [
     {
-      src: "https://www.tatasustainability.com/images/Banners/CSR-Banner.jpg",
+      src: img1,
       caption:
         "For over 150 years, we have been serving the communities in which we operate. Community is pivotal to the Tata mission and is at the heart of everything we do, how we think and who we are.",
       title: "CSR",
       tag: "Social",
     },
     {
-      src: "https://www.tatasustainability.com/images/Banners/CSR-Banner.jpg", // Add more images with this format
-      caption: "Description for the second image goes here.",
-      title: "Title 2",
-      tag: "Tag 2",
+      src: img2,
+      caption:
+        "For over 150 years, we have been serving the communities in which we operate. Community is pivotal to the Tata mission and is at the heart of everything we do, how we think and who we are.",
+      title: "CSR",
+      tag: "Army",
+    },
+    {
+      src: img3,
+      caption:
+        "For over 150 years, we have been serving the communities in which we operate. Community is pivotal to the Tata mission and is at the heart of everything we do, how we think and who we are.",
+      title: "CSR",
+      tag: "Education",
     },
     // Add more images as needed
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [fade, setFade] = useState(true); // State to manage fade effect
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); // Trigger fade out
+      setFade(false);
       setTimeout(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        setFade(true); // Trigger fade in
-      }, 700); // Duration for fade out
-    }, 4000); // Change the image every 5 seconds
+        setFade(true);
+      }, 700);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -47,22 +57,43 @@ function Carousel() {
         style={{ paddingTop: "123px", clear: "both" }}
       />
       <div className="container" style={{ maxWidth: "1210px", width: "100%" }}>
-        <img
-          src={images[currentIndex].src}
-          alt="Carousel Background"
+        <div
           style={{
             width: "100%",
             height: "464px",
-            objectFit: "cover",
             position: "absolute",
             top: 0,
             left: 0,
-            opacity: fade ? 1 : 0,
-            transition: "opacity 1s ease-in-out",
-            objectPosition:"top"
+            overflow: "hidden",
           }}
-        />
-        <div style={{ position: "relative", zIndex: 1 }}>
+        >
+          <img
+            src={images[currentIndex].src}
+            alt="Carousel Background"
+            style={{
+              width: "100%",
+              height: "464px",
+              objectFit: "cover",
+              opacity: fade ? 1 : 0,
+              transition: "opacity 1s ease-in-out",
+              objectPosition: "top",
+              // filter: "blur(0.5px)",
+              // backgroundBlendMode:'multiply'
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "rgb(0 0 0 / 50%)", // Black overlay with transparency
+              zIndex: 1,
+            }}
+          />
+        </div>
+        <div style={{ position: "relative", zIndex: 2, marginBottom: "5rem" }}>
           <div
             className="captionPL"
             style={{ paddingLeft: "15px", color: "white" }}
@@ -84,7 +115,7 @@ function Carousel() {
               {images[currentIndex].tag}
             </div>
             <div
-              className="bannerT topP20"
+              className="bannerT topP20 "
               style={{
                 paddingTop: "20px",
                 fontFamily: "Lato, sans-serif",
@@ -116,6 +147,7 @@ function Carousel() {
                 lineHeight: "22px",
                 maxWidth: "360px",
                 paddingLeft: "15px",
+                borderLeft: "6px solid rgb(255, 255, 255)",
               }}
             >
               {images[currentIndex].caption}
