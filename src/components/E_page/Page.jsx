@@ -7,6 +7,7 @@ import CountUp from "react-countup";
 import { db } from "../../Firebase";
 import { getDoc, doc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
+import Loader from "../main/Loader";
 
 
 function Epage() {
@@ -53,7 +54,7 @@ function Epage() {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   if (error) {

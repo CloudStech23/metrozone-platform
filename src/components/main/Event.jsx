@@ -3,7 +3,8 @@ import { MDBCard, MDBCardImage, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 // import img1 from "../../Images/caro-img/Medical Camp at District Hospital,Drass, Kargil 2014.jpeg";
 import { db } from "../../Firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import Loader from "./Loader";
 
 
 // const events = [
@@ -97,9 +98,14 @@ function Event() {
     const fetchEvents = async () => {
       try {
         const eventsCollection = collection(db, 'events');
-        const eventsSnapshot = await getDocs(eventsCollection);
+        
+        // Order events by 'createdAt' field in descending order
+        const eventsQuery = query(eventsCollection, orderBy('createdAt', 'desc'));
+        
+        const eventsSnapshot = await getDocs(eventsQuery);
         const eventsList = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setEvents(eventsList);
+        
+        setEvents(eventsList);  // Set the ordered events
       } catch (error) {
         setError('Error fetching events');
         console.error('Error fetching events:', error);
@@ -107,13 +113,13 @@ function Event() {
         setLoading(false);
       }
     };
-
+  
     fetchEvents();
   }, []);
 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   if (error) {
