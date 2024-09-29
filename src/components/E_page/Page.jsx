@@ -1,19 +1,39 @@
 import React, { useEffect, useState } from "react";
 import "../main/Main.css";
 import Navbar from "../main/Navbar";
-import img1 from "../../Images/caro-img/WhatsApp Image 2023-09-22 at 9.33.14 PM.jpeg";
-import img2 from "../../Images/caro-img/UP GOVT FELICITATION.jpeg";
-import img3 from "../../Images/caro-img/GOC 31SA.jpeg";
-import img4 from "../../Images/caro-img/COMMANDER 8 MOUNTAIN ARTY BDE.jpeg";
-import img5 from "../../Images/caro-img/WhatsApp Image 2023-09-22 at 9.33.14 PM.jpeg";
-import img6 from "../../Images/caro-img/Medical Camp at District Hospital,Drass, Kargil 2014.jpeg";
 import "./Page.css";
-import { MDBCol, MDBCardImage } from "mdb-react-ui-kit";
+import { MDBCardImage } from "mdb-react-ui-kit";
 import CountUp from "react-countup";
+import { db } from "../../Firebase";
+import { getDoc, doc } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+
 
 function Epage() {
+  const { id } = useParams();
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [columnCount, setColumnCount] = useState(3);
+
+
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const docref = doc(db, 'events', id);
+        const eventsSnapshot = await getDoc(docref);
+
+        if (eventsSnapshot.exists()) {
+          const eventData = eventsSnapshot.data();
+          setEvent(eventData);
+        }
+      } catch (error) {
+        setError('Error fetching events');
+        console.error('Error fetching events:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
     const handleResize = () => {
       if (window.innerWidth <= 768) {
         setColumnCount(2); // Use 2 columns for phone screens
@@ -26,41 +46,50 @@ function Epage() {
     handleResize(); // Set initial column count
 
     // Cleanup listener on unmount
+    fetchData();
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [id]);
 
-  const images = [
-    {
-      src: img6,
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-      title: "Medical Camp in Urban Area",
-      tag: "Health-Care",
-      date: "12 Sept 2024",
-      location: "Jammu Kashmir",
-      partner: "Metrozone Group",
-    },
-    {
-      src: "https://www.tatasustainability.com/images/Banners/CSR-Banner.jpg", // Add more images with this format
-      caption: "Description for the second image goes here.",
-      title: "Title 2",
-      tag: "Tag 2",
-      date: "13 sept 2024",
-      location: "Delhi",
-    },
-    // Add more images as needed
-  ];
-  const imageGridData = [
-    { src: img1 },
-    { src: img2 },
-    { src: img3 },
-    { src: img4 },
-    { src: img5 },
-    { src: img6 },
-  ];
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+
+
+  // const images = [
+  //   {
+  //     src: img6,
+
+  //     title: "Medical Camp in Urban Area",
+  //     tag: "Health-Care",
+  //     date: "12 Sept 2024",
+  //     location: "Jammu Kashmir",
+  //     partner: "Metrozone Group",
+  //   },
+  //   {
+  //     src: "https://www.tatasustainability.com/images/Banners/CSR-Banner.jpg", // Add more images with this format
+  //     caption: "Description for the second image goes here.",
+  //     title: "Title 2",
+  //     tag: "Tag 2",
+  //     date: "13 sept 2024",
+  //     location: "Delhi",
+  //   },
+  //   // Add more images as needed
+  // ];
+  // const imageGridData = [
+  //   { src: img1 },
+  //   { src: img2 },
+  //   { src: img3 },
+  //   { src: img4 },
+  //   { src: img5 },
+  //   { src: img6 },
+  // ];
 
   return (
     <div
@@ -73,7 +102,7 @@ function Epage() {
         style={{ paddingTop: "123px", clear: "both" }}
       />
       <div className="container" style={{ maxWidth: "1210px", width: "100%" }}>
-      <div
+        <div
           style={{
             width: "100%",
             height: "464px",
@@ -83,32 +112,32 @@ function Epage() {
             overflow: "hidden",
           }}
         >
-        <img
-          src={images[currentIndex].src}
-          alt="Carousel Background"
-          style={{
-            width: "100%",
-            height: "464px",
-            objectFit: "cover",
-            position: "absolute",
-            top: 0,
-            left: 0,
+          <img
+            src={event.mainImage}
+            alt="Carousel Background"
+            style={{
+              width: "100%",
+              height: "464px",
+              objectFit: "cover",
+              position: "absolute",
+              top: 0,
+              left: 0,
 
-            transition: "opacity 1s ease-in-out",
-            objectPosition: "top",
-          }}
-        />
+              transition: "opacity 1s ease-in-out",
+              objectPosition: "top",
+            }}
+          />
 
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-          }}
-        />
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+            }}
+          />
         </div>
         <div style={{ position: "relative", zIndex: 1 }}>
           <div
@@ -129,11 +158,11 @@ function Epage() {
                 letterSpacing: "2px",
               }}
             >
-              {images[currentIndex].tag}
+              {event.programType}
             </div>
             <div style={{}} className="fs-5 mt-2">
-                {images[currentIndex].partner}
-              </div>
+              {event.partner}
+            </div>
             <div
               className="bannerT topP20 col-4"
               style={{
@@ -146,15 +175,19 @@ function Epage() {
                 color: "rgb(255, 255, 255)",
               }}
             >
-              {images[currentIndex].title}
+              {event.title}
             </div>
             <div className="mt-2">
               <span style={{}} className="fs-6">
-                {images[currentIndex].location}
+                {event.eventVenue}
               </span>{" "}
               ,
               <span style={{}} className="mx-2 fs-6">
-                {images[currentIndex].date}
+                {new Date(event.eventDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
               </span>
             </div>
           </div>
@@ -183,7 +216,7 @@ function Epage() {
                       {/* Adjusted font size for mobile */}
                       <CountUp
                         start={0}
-                        end={40000}
+                        end={event.beneficiary}
                         duration={3}
                         separator=","
                       />
@@ -222,7 +255,7 @@ function Epage() {
                       {/* Adjusted font size for mobile */}
                       <CountUp
                         start={0}
-                        end={100000}
+                        end={event.value}
                         duration={3}
                         separator=","
                       />
@@ -251,7 +284,7 @@ function Epage() {
                     <i className="fa fa-globe display-2" aria-hidden="true"></i>
                   </div>
                   <div>
-                    <h3 className="fs-2 fs-md-2 fw-bold mb-0">Jammu & Kashmir</h3>{" "}
+                    <h3 className="fs-2 fs-md-2 fw-bold mb-0">{event.eventVenue}</h3>{" "}
                     {/* Adjusted font size for mobile */}
                     <p className="fs-6 fs-md-5 text-center">
                       Where  our CSR initiative for
@@ -272,14 +305,7 @@ function Epage() {
           </h2>
           <hr />
           <div className="bodytextPara">
-            Our CSR initiatives focus on supporting local and national
-            communities, particularly those disadvantaged, through sustainable
-            development practices. We collaborate with governments, NGOs, and
-            key stakeholders to drive positive change. The Metrozone Group has
-            been actively involved in community development, healthcare,
-            education, and environmental projects. Over the past year, we have
-            invested INR 1,095 crore, positively impacting over 11.7 million
-            lives
+            {event.description}
           </div>
 
           {/* <div className="bodytext aos-init aos-animate">
@@ -293,7 +319,7 @@ function Epage() {
       <div className="container">
         <div className="containerBody mt-2 py-2  ">
           <h2 className="text-primary pb-1 fw-light" style={{ fontSize: "22px" }}>
-          Capturing the Essence of Our Community Efforts
+            Capturing the Essence of Our Community Efforts
           </h2>
           <div className="yellow-line" />
         </div>
@@ -301,11 +327,11 @@ function Epage() {
         <div className="row justify-content-center">
           <div
             className="col-10 col-md-9 mt-2 mb-5"
-            // style={{
-            //   maxHeight: "35rem",
-            //   overflowY: "scroll",
-            //   scrollbarWidth: "thin",
-            // }}
+          // style={{
+          //   maxHeight: "35rem",
+          //   overflowY: "scroll",
+          //   scrollbarWidth: "thin",
+          // }}
           >
             <div
               style={{
@@ -313,7 +339,7 @@ function Epage() {
                 columnGap: "10px", // Adjust spacing between columns
               }}
             >
-              {imageGridData.map((image, index) => (
+              {event.images.map((image, index) => (
                 <div
                   key={index}
                   style={{
@@ -322,7 +348,7 @@ function Epage() {
                   }}
                 >
                   <MDBCardImage
-                    src={image.src}
+                    src={image}
                     alt={image.alt}
                     fluid
                     style={{

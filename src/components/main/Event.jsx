@@ -1,59 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MDBCard, MDBCardImage, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
-import img1 from "../../Images/caro-img/Medical Camp at District Hospital,Drass, Kargil 2014.jpeg";
+// import img1 from "../../Images/caro-img/Medical Camp at District Hospital,Drass, Kargil 2014.jpeg";
+import { db } from "../../Firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-const events = [
-  {
-    event_name: "Medical Camp in Urban Area",
-    date: "25th Sept 2024",
-    location: "Jammu & Kashmir",
-    category: "Health-Care",
-    image_url: img1,
-    partner: "Metrozone Group",
-  },
-  {
-    event_name: "Art and Culture Expo",
-    date: "5th October 2024",
-    location: "Los Angeles",
-    category: "Exhibition",
-    image_url: "https://mdbootstrap.com/img/new/standard/nature/185.webp",
-  },
-  {
-    event_name: "Tech Innovation Conference",
-    date: "15th November 2024",
-    location: "San Francisco",
-    category: "Conference",
-    image_url: "https://mdbootstrap.com/img/new/standard/nature/184.webp",
-  },
-  {
-    event_name: "Nature Photography Workshop",
-    date: "25th September 2024",
-    location: "New York City",
-    category: "Workshop",
-    image_url: "https://mdbootstrap.com/img/new/standard/nature/186.webp",
-  },
-  {
-    event_name: "Art and Culture Expo",
-    date: "5th October 2024",
-    location: "Los Angeles",
-    category: "Exhibition",
-    image_url: "https://mdbootstrap.com/img/new/standard/nature/185.webp",
-  },
-  {
-    event_name: "Tech Innovation Conference",
-    date: "15th November 2024",
-    location: "San Francisco",
-    category: "Conference",
-    image_url: "https://mdbootstrap.com/img/new/standard/nature/184.webp",
-  },
-];
+
+// const events = [
+//   {
+//     event_name: "Medical Camp in Urban Area",
+//     date: "25th Sept 2024",
+//     location: "Jammu & Kashmir",
+//     category: "Health-Care",
+//     image_url: img1,
+//     partner: "Metrozone Group",
+//   },
+//   {
+//     event_name: "Art and Culture Expo",
+//     date: "5th October 2024",
+//     location: "Los Angeles",
+//     category: "Exhibition",
+//     image_url: "https://mdbootstrap.com/img/new/standard/nature/185.webp",
+//   },
+//   {
+//     event_name: "Tech Innovation Conference",
+//     date: "15th November 2024",
+//     location: "San Francisco",
+//     category: "Conference",
+//     image_url: "https://mdbootstrap.com/img/new/standard/nature/184.webp",
+//   },
+//   {
+//     event_name: "Nature Photography Workshop",
+//     date: "25th September 2024",
+//     location: "New York City",
+//     category: "Workshop",
+//     image_url: "https://mdbootstrap.com/img/new/standard/nature/186.webp",
+//   },
+//   {
+//     event_name: "Art and Culture Expo",
+//     date: "5th October 2024",
+//     location: "Los Angeles",
+//     category: "Exhibition",
+//     image_url: "https://mdbootstrap.com/img/new/standard/nature/185.webp",
+//   },
+//   {
+//     event_name: "Tech Innovation Conference",
+//     date: "15th November 2024",
+//     location: "San Francisco",
+//     category: "Conference",
+//     image_url: "https://mdbootstrap.com/img/new/standard/nature/184.webp",
+//   },
+// ];
 
 const cardData = [
   {
     title: "Health-Care",
     category: "fas fa-heartbeat fa-2x",
-    
+
     link: "#",
     color: "#3FCBA4",
   },
@@ -86,6 +89,42 @@ const handleAlert = (event_name) => {
 };
 
 function Event() {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const eventsCollection = collection(db, 'events');
+        const eventsSnapshot = await getDocs(eventsCollection);
+        const eventsList = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setEvents(eventsList);
+      } catch (error) {
+        setError('Error fetching events');
+        console.error('Error fetching events:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+
+
+
+
+
   const cardStyle = {
     width: "93%",
     height: "320px",
@@ -102,9 +141,9 @@ function Event() {
     height: "320px",
   };
 
-  const imageHoverStyle = {
-    transform: "scale(1.1)", // Zoom effect
-  };
+  // const imageHoverStyle = {
+  //   transform: "scale(1.1)", // Zoom effect
+  // };
 
   return (
     <div>
@@ -112,8 +151,8 @@ function Event() {
         className="text-primary pb-1 mb-4 "
         style={{ fontSize: "22px", borderBottom: "5px solid #2968da" }}
       >
-        <p style={{borderBottom: "1px solid #2968da"}}>Our Impactful Moments</p>
-        
+        <p style={{ borderBottom: "1px solid #2968da" }}>Our Impactful Moments</p>
+
         <div>
           <div className="container d-xl-block mt-4 d-none">
             <div className="row justify-content-center">
@@ -153,8 +192,8 @@ function Event() {
         </div>
       </h2>
       <MDBRow className="">
-        {events.map((event, index) => (
-          <MDBCol lg="4" md="6" sm="12" className="mb-4" key={index}>
+        {events.map((event) => (
+          <MDBCol lg="4" md="6" sm="12" className="mb-4" key={event.id}>
             <MDBCard style={cardStyle}>
               <div
                 className="image-container"
@@ -163,9 +202,9 @@ function Event() {
                 }}
               >
                 <MDBCardImage
-                  src={event.image_url}
+                  src={event.mainImage}
                   position="top"
-                  alt={event.event_name}
+                  alt={event.title}
                   style={imageStyle}
                   className="event-image"
                   onMouseEnter={(e) =>
@@ -201,7 +240,7 @@ function Event() {
                   fontSize: "12px",
                 }}
               >
-                {event.category}
+                {event.programType}
               </div>
               <div
                 style={{
@@ -215,7 +254,7 @@ function Event() {
                   fontSize: "17px",
                 }}
               >
-                 {event.partner}
+                {event.partner}
               </div>
 
               <div
@@ -226,12 +265,16 @@ function Event() {
                   color: "#fff",
                 }}
               >
-                <h4 style={{ margin: 0 }}>{event.event_name}</h4>
-                <span style={{ margin: "3px 0" }}>{event.location}</span>
+                <h4 style={{ margin: 0 }}>{event.title}</h4>
+                <span style={{ margin: "3px 0" }}>{event.eventVenue}</span>
                 <span style={{ margin: "3px 0", display: "block" }}>
-                  {event.date}
+                  {new Date(event.eventDate).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })}
                 </span>
-                <Link to="/E_page">
+                <Link to={`/E_page/${event.id}`}>
                   <i className="bi bi-arrow-right fs-4 text-white"></i>
                 </Link>
               </div>
