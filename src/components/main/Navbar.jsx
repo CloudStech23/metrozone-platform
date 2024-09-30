@@ -13,7 +13,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { Button } from "@mui/material";
 import { Collapse, Divider } from "@mui/material";
-import Logo from "../../Images/Metrozone-logo(big).png"
+// import Logo from "../../Images/"
 
 
 function Navbar() {
@@ -21,13 +21,13 @@ function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   const [openAbout, setOpenAbout] = useState(false);
   const [openServices, setOpenServices] = useState(false);
-  const [Logoimg , setLogoimg] = useState(Logo)
+  // const [Logoimg , setLogoimg] = useState(Logo)
 
   const handleResize = () => {
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
       setIsMobile(true);
-      setLogoimg("http://www.metrozonegroup.com/images/logo.png")
+      // setLogoimg("http://www.metrozonegroup.com/images/logo.png")
 
     } else {
       setIsMobile(false);
@@ -99,7 +99,7 @@ function Navbar() {
             style={{ marginLeft: "auto" }}
           >
             <img
-              src={Logoimg}
+              src="http://www.metrozonegroup.com/images/logo.png"
                style={{  height: "40px",marginRight:'10px' }}
               
               alt="Metrozone Logo"
