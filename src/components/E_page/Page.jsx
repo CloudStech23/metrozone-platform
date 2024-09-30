@@ -6,9 +6,8 @@ import { MDBCardImage } from "mdb-react-ui-kit";
 import CountUp from "react-countup";
 import { db } from "../../Firebase";
 import { getDoc, doc } from "firebase/firestore";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../main/Loader";
-
 
 function Epage() {
   const { id } = useParams();
@@ -17,11 +16,10 @@ function Epage() {
   const [error, setError] = useState(null);
   const [columnCount, setColumnCount] = useState(3);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const docref = doc(db, 'events', id);
+        const docref = doc(db, "events", id);
         const eventsSnapshot = await getDoc(docref);
 
         if (eventsSnapshot.exists()) {
@@ -29,8 +27,8 @@ function Epage() {
           setEvent(eventData);
         }
       } catch (error) {
-        setError('Error fetching events');
-        console.error('Error fetching events:', error);
+        setError("Error fetching events");
+        console.error("Error fetching events:", error);
       } finally {
         setLoading(false);
       }
@@ -54,43 +52,12 @@ function Epage() {
   }, [id]);
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-
-
-  // const images = [
-  //   {
-  //     src: img6,
-
-  //     title: "Medical Camp in Urban Area",
-  //     tag: "Health-Care",
-  //     date: "12 Sept 2024",
-  //     location: "Jammu Kashmir",
-  //     partner: "Metrozone Group",
-  //   },
-  //   {
-  //     src: "https://www.tatasustainability.com/images/Banners/CSR-Banner.jpg", // Add more images with this format
-  //     caption: "Description for the second image goes here.",
-  //     title: "Title 2",
-  //     tag: "Tag 2",
-  //     date: "13 sept 2024",
-  //     location: "Delhi",
-  //   },
-  //   // Add more images as needed
-  // ];
-  // const imageGridData = [
-  //   { src: img1 },
-  //   { src: img2 },
-  //   { src: img3 },
-  //   { src: img4 },
-  //   { src: img5 },
-  //   { src: img6 },
-  // ];
 
   return (
     <div
@@ -165,12 +132,12 @@ function Epage() {
               {event.partner}
             </div>
             <div
-              className="bannerT topP20 col-4"
+              className="bannerT topP20 col-5"
               style={{
                 paddingTop: "10px",
                 fontFamily: "Lato, sans-serif",
                 fontWeight: "700",
-                fontSize: "43px",
+                fontSize: "38px",
                 lineHeight: "40px",
                 letterSpacing: "-0.78px",
                 color: "rgb(255, 255, 255)",
@@ -285,11 +252,12 @@ function Epage() {
                     <i className="fa fa-globe display-2" aria-hidden="true"></i>
                   </div>
                   <div>
-                    <h3 className="fs-2 fs-md-2 fw-bold mb-0">{event.eventVenue}</h3>{" "}
+                    <h3 className="fs-2 fs-md-2 fw-bold mb-0">
+                      {event.eventVenue}
+                    </h3>{" "}
                     {/* Adjusted font size for mobile */}
                     <p className="fs-6 fs-md-5 text-center">
-                      Where  our CSR initiative for
-                      community support
+                      Where our CSR initiative for community support
                     </p>{" "}
                     {/* Adjusted font size for mobile */}
                   </div>
@@ -300,14 +268,15 @@ function Epage() {
         </div>
       </div>
       <div className="container  ">
-        <div className="containerBody mt-4 py-5">
+        <div className="containerBody mt-5">
+          <Link to="/" className="btn" style={{ backgroundColor: "rgb(222 153 57)",color:'white' }}>&lt; &lt; Back to CSR Page</Link>
+        </div>
+        <div className="containerBody mt-2 py-4">
           <h2 className="text-primary  pb-1" style={{ fontSize: "22px" }}>
             Program Details <i class="bi bi-exclamation-circle"></i>
           </h2>
           <hr />
-          <div className="bodytextPara">
-            {event.description}
-          </div>
+          <div className="bodytextPara">{event.description}</div>
 
           {/* <div className="bodytext aos-init aos-animate">
             The Tata group’s activities relate to education, livelihoods and
@@ -319,7 +288,10 @@ function Epage() {
 
       <div className="container">
         <div className="containerBody mt-2 py-2  ">
-          <h2 className="text-primary pb-1 fw-light" style={{ fontSize: "22px" }}>
+          <h2
+            className="text-primary pb-1 fw-light"
+            style={{ fontSize: "22px" }}
+          >
             Capturing the Essence of Our Community Efforts
           </h2>
           <div className="yellow-line" />
@@ -328,11 +300,11 @@ function Epage() {
         <div className="row justify-content-center">
           <div
             className="col-10 col-md-9 mt-2 mb-5"
-          // style={{
-          //   maxHeight: "35rem",
-          //   overflowY: "scroll",
-          //   scrollbarWidth: "thin",
-          // }}
+            // style={{
+            //   maxHeight: "35rem",
+            //   overflowY: "scroll",
+            //   scrollbarWidth: "thin",
+            // }}
           >
             <div
               style={{

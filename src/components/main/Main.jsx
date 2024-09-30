@@ -93,7 +93,7 @@ function Main() {
         </div>
 
         <div className="container mx-5 mb-5 d-xl-block d-none">
-          <img src="https://www.tourmyindia.com/blog//wp-content/uploads/2018/10/Vivekananda%E2%80%99s-neverending-hope-from-the-youth.jpg" alt="" style={{height:'22rem',width:"77rem"}} />
+          <img src="https://www.tourmyindia.com/blog//wp-content/uploads/2018/10/Vivekananda%E2%80%99s-neverending-hope-from-the-youth.jpg" alt="" style={{height:'22rem',width:"77rem",filter:'sepia(100%)'}} />
         </div>
 
         <MDBContainer className="py-4 mx-auto ">
