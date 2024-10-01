@@ -112,7 +112,7 @@ function Epage() {
             className="captionPL"
             style={{ paddingLeft: "15px", color: "white" }}
           >
-            <div
+            {/* <div
               className="captionBox"
               style={{
                 border: "1px solid rgb(255, 255, 255)",
@@ -127,12 +127,12 @@ function Epage() {
               }}
             >
               {event.programType}
-            </div>
-            <div style={{}} className="fs-5 mt-2">
+            </div> */}
+            {/* <div style={{}} className="fs-5 mt-2">
               {event.partner}
-            </div>
+            </div> */}
             <div
-              className="bannerT topP20 col-5"
+              className="bannerT topP20 col-4"
               style={{
                 paddingTop: "10px",
                 fontFamily: "Lato, sans-serif",
@@ -145,7 +145,7 @@ function Epage() {
             >
               {event.title}
             </div>
-            <div className="mt-2">
+            {/* <div className="mt-2">
               <span style={{}} className="fs-6">
                 {event.eventVenue}
               </span>{" "}
@@ -157,11 +157,11 @@ function Epage() {
                   year: "numeric",
                 })}
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
-      <div className="container" style={{ marginTop: "2.7rem" }}>
+      <div className="container" style={{ marginTop: "6rem" }}>
         <div className="row justify-content-center">
           {/* Single card containing all sections */}
           <div className="col-lg-10 col-md-12">
@@ -173,25 +173,23 @@ function Epage() {
                 {/* Section 1 */}
                 <div
                   className="d-flex justify-content-center align-items-center text-center mb-3 mb-md-0"
-                  style={{ flex: 1 }}
+                  style={{ flex: 0.9 }}
                 >
                   <div className="me-3">
-                    <i className="fa fa-users display-2" aria-hidden="true"></i>
+                    {/* <i className="fa fa-users display-3" aria-hidden="true"></i> */}
                   </div>
                   <div>
-                    <h3 className="fs-1 fs-md-1 fw-bold mb-0">
+                    <h3 className="fs-2 fs-md-1 fw-bold mb-0">
                       {" "}
                       {/* Adjusted font size for mobile */}
                       <CountUp
                         start={0}
-                        end={event.beneficiary}
+                        end={event.beneficiarynum}
                         duration={3}
                         separator=","
                       />
                     </h3>
-                    <p className="fs-6 fs-md-5">
-                      Beneficiaries took part in the event
-                    </p>{" "}
+                    <p className="fs-6 fs-md-5">{event.beneficiarytext}</p>{" "}
                     {/* Adjusted font size for mobile */}
                   </div>
                 </div>
@@ -209,27 +207,33 @@ function Epage() {
                 {/* Section 2 */}
                 <div
                   className="d-flex justify-content-center align-items-center text-center mb-3 mb-md-0"
-                  style={{ flex: 1 }}
+                  style={{ flex: 0.9 }}
                 >
-                  <div className="me-3">
-                    <i
-                      className="bi bi-currency-rupee display-2"
-                      aria-hidden="true"
-                    ></i>
-                  </div>
                   <div>
-                    <h3 className="fs-1 fs-md-1 fw-bold mb-0">
-                      {" "}
-                      {/* Adjusted font size for mobile */}
+                    <div className="d-flex align-items-center">
+                      <h3 className="fs-2 fs-md-1 fw-bold mb-0">
+                        <CountUp
+                          start={0}
+                          end={event.value}
+                          duration={3}
+                          separator=","
+                        />
+                      </h3>
+                      <span className="mx-2 fs-2"><i class="fa fa-inr" aria-hidden="true"></i></span>
+                      <span className="mx-2 fs-2">/</span>
+                      <h3 className="fs-2 fs-md-1 fw-bold mb-0">
                       <CountUp
-                        start={0}
-                        end={event.value}
-                        duration={3}
-                        separator=","
-                      />
-                    </h3>
-                    <p className="fs-6 fs-md-5">Costs incurred for the event</p>{" "}
-                    {/* Adjusted font size for mobile */}
+                          start={0}
+                          end={event.quantity}
+                          duration={3}
+                          separator=","
+                        />
+                      </h3> 
+                      <span className="fs-3 mx-1 fs-md-1 fw-bold mb-0">
+                        {event.unittype}
+                      </span> 
+                    </div>
+                    <p className="fs-6 fs-md-5">{event.quantvaluetext}</p>
                   </div>
                 </div>
 
@@ -246,18 +250,25 @@ function Epage() {
                 {/* Section 3 */}
                 <div
                   className="d-flex justify-content-center align-items-center text-center"
-                  style={{ flex: 1 }}
+                  style={{ flex: 0.9 }}
                 >
-                  <div className="me-3">
+                  {/* <div className="me-3">
                     <i className="fa fa-globe display-2" aria-hidden="true"></i>
-                  </div>
+                  </div> */}
                   <div>
                     <h3 className="fs-2 fs-md-2 fw-bold mb-0">
-                      {event.eventVenue}
+                      {event.partner}
                     </h3>{" "}
                     {/* Adjusted font size for mobile */}
                     <p className="fs-6 fs-md-5 text-center">
-                      Where our CSR initiative for community support
+                      <span>{event.eventVenue}</span> -{" "}
+                      <span style={{}} className="mx-2 fs-6">
+                        {new Date(event.eventDate).toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </span>
                     </p>{" "}
                     {/* Adjusted font size for mobile */}
                   </div>
@@ -269,7 +280,13 @@ function Epage() {
       </div>
       <div className="container  ">
         <div className="containerBody mt-5">
-          <Link to="/" className="btn" style={{ backgroundColor: "rgb(222 153 57)",color:'white' }}>&lt; &lt; Back to CSR Page</Link>
+          <Link
+            to="/"
+            className="btn"
+            style={{ backgroundColor: "rgb(222 153 57)", color: "white" }}
+          >
+            &lt; &lt; Back to CSR Page
+          </Link>
         </div>
         <div className="containerBody mt-2 py-4">
           <h2 className="text-primary  pb-1" style={{ fontSize: "22px" }}>
