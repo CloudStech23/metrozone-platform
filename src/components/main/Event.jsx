@@ -251,7 +251,7 @@ function Event() {
               >
                 {event.programType}
               </div>
-              <div
+              {/* <div
                 style={{
                   position: "absolute",
                   top: "10px",
@@ -264,7 +264,7 @@ function Event() {
                 }}
               >
                 {event.partner}
-              </div>
+              </div> */}
 
               <div
                 style={{
