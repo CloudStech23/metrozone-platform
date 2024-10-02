@@ -19,7 +19,7 @@ function Epage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [columnCount, setColumnCount] = useState(3);
-  const [textWidth, setTextWidth] = useState("35rem");
+  const [textWidth, setTextWidth] = useState("37rem");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
