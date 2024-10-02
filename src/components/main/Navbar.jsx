@@ -13,7 +13,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { Button } from "@mui/material";
 import { Collapse, Divider } from "@mui/material";
-// import Logo from "../../Images/"
+import Logo from "../../Images/caro-img/Metrozone-logo.png"
 
 
 function Navbar() {
@@ -90,7 +90,7 @@ function Navbar() {
           >
             {/* <i class="fa fa-bars text-white fs-2" aria-hidden="true"></i> */}
             <img
-              src="http://www.metrozonegroup.com/images/logo.png"
+              src={Logo}
                style={{  height: "40px",marginRight:'10px' }}
               
               alt="Metrozone Logo"
@@ -135,7 +135,7 @@ function Navbar() {
             <div style={{ padding: "1rem", textAlign: "center" }}>
               {/* Logo Space */}
               <img
-                src="http://www.metrozonegroup.com/images/logo.png"
+                src={Logo}
                 height="40"
                 alt="Logo"
                 style={{ marginBottom: "1rem" }}
