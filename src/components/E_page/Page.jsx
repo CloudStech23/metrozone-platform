@@ -282,7 +282,7 @@ function Epage() {
                   style={{ flex: 0.9 }}
                 >
                   <div>
-                    <h3 className="fs-2 fs-md-2 fw-bold mb-0">
+                    <h3 className="fs-3 fs-md-2 fw-bold mb-0">
                       {event.partner}
                     </h3>
                     <p className="fs-6 fs-md-5 text-center fixed-title-container">

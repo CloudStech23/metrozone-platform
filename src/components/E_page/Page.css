@@ -4,9 +4,9 @@
 }
 .fixed-title-container {
   height: 20px; /* Adjust this value as needed */
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
-  white-space: nowrap; /* Prevents text from wrapping */
+  /* white-space: nowrap;   */
 }
 
 .fixed-card {
