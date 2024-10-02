@@ -77,7 +77,7 @@ function Navbar() {
           {/* Hamburger Menu */}
           <Button
             aria-label=""
-            onClick={toggleDrawer(true)}
+            // onClick={toggleDrawer(true)}
             style={{
               margin: "0",
               padding: "0",
@@ -88,15 +88,23 @@ function Navbar() {
             }}
             className="text-white tg-btn"
           >
-            <i class="fa fa-bars text-white fs-2" aria-hidden="true"></i>
+            {/* <i class="fa fa-bars text-white fs-2" aria-hidden="true"></i> */}
+            <img
+              src="http://www.metrozonegroup.com/images/logo.png"
+               style={{  height: "40px",marginRight:'10px' }}
+              
+              alt="Metrozone Logo"
+              loading="lazy"
+               
+            />
+          <span className="text-white fs-4 " style={{fontFamily:"Lato, sans-serif"}}>METROZONE Group</span>
           </Button> 
-          <span className="text-white fs-4 d-xl-block d-none" style={{fontFamily:"Lato, sans-serif"}}>METROZONE Group Activities</span>
 
           {/* Tata Logo */}
-          <MDBNavbarBrand
+          {/* <MDBNavbarBrand
             href=" "
             target="_blank"
-            style={{ marginLeft: "auto" }}
+            style={{ marginLeft: "auto" ,display:'none' }}
           >
             <img
               src="http://www.metrozonegroup.com/images/logo.png"
@@ -106,7 +114,7 @@ function Navbar() {
               loading="lazy"
                
             />
-          </MDBNavbarBrand>
+          </MDBNavbarBrand> */}
         </MDBContainer>
       </MDBNavbar>
 

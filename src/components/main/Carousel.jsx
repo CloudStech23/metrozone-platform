@@ -10,25 +10,24 @@ function Carousel() {
     {
       src: img1,
       caption:
-        "For over 150 years, we have been serving the communities in which we operate. Community is pivotal to the Tata mission and is at the heart of everything we do, how we think and who we are.",
-      title: "CSR",
+        "The Uttar Pradesh government honors outstanding individuals and organizations with the Recognition for Social Impact award. This initiative celebrates significant contributions in education, healthcare, and poverty alleviation, inspiring community engagement through monetary grants for continued impact.",
+      title: "Jan-Kalyan Award by the UP Government",
       tag: "Social",
     },
     {
       src: img2,
       caption:
-        "For over 150 years, we have been serving the communities in which we operate. Community is pivotal to the Tata mission and is at the heart of everything we do, how we think and who we are.",
-      title: "CSR",
-      tag: "Army",
+        "The Maternal Health Initiative in Kashmir provides essential healthcare services to expectant mothers. Offering prenatal care, nutritional support, and education on maternal health, this program aims to reduce maternal and infant mortality rates while empowering women through increased knowledge and resources.",
+      title: "Maternal Health Initiative in Kashmir",
+      tag: "",
     },
     {
       src: img3,
       caption:
-        "For over 150 years, we have been serving the communities in which we operate. Community is pivotal to the Tata mission and is at the heart of everything we do, how we think and who we are.",
-      title: "CSR",
+        "The Educational Resource Distribution program enhances access for underprivileged children by providing free textbooks and learning materials. This initiative removes educational barriers, fostering a love for learning while including workshops for parents and teachers to promote community engagement.",
+      title: "Educational Resource Distribution for Children",
       tag: "Education",
     },
-    // Add more images as needed
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,20 +51,20 @@ function Carousel() {
   return (
     <div
       className="bg-CSR"
-      style={{ minHeight: "464px", position: "relative" }}
+      style={{ minHeight: "600px", position: "relative" }} // Increased height
       onMouseEnter={() => setIsPaused(true)} // Pause on hover
       onMouseLeave={() => setIsPaused(false)} // Resume on mouse leave
     >
       <Navbar />
       <div
         className="clear captionP"
-        style={{ paddingTop: "123px", clear: "both" }}
+        style={{ paddingTop: "150px", clear: "both" }} // Adjusted for new height
       />
       <div className="container" style={{ maxWidth: "1210px", width: "100%" }}>
         <div
           style={{
             width: "100%",
-            height: "464px",
+            height: "620px", // Adjusted height for the image
             position: "absolute",
             top: 0,
             left: 0,
@@ -77,7 +76,7 @@ function Carousel() {
             alt="Carousel Background"
             style={{
               width: "100%",
-              height: "464px",
+              height: "100%", // Makes sure the image takes up full height
               objectFit: "cover",
               opacity: fade ? 1 : 0,
               transition: "opacity 1s ease-in-out",
@@ -90,18 +89,20 @@ function Carousel() {
               top: 0,
               left: 0,
               width: "100%",
-              height: "100%",
-              background: "rgb(0 0 0 / 50%)",
+              height: "620px",
+              background: "rgb(0 0 0 / 50%)", // Adds the black overlay
               zIndex: 1,
             }}
           />
         </div>
-        <div style={{ position: "relative", zIndex: 2, marginBottom: "5rem" }}>
+        <div
+          style={{ position: "relative", zIndex: 2, marginBottom: "5rem" }}
+        >
           <div
             className="captionPL"
             style={{ paddingLeft: "15px", color: "white" }}
           >
-            <div
+            {/* <div
               className="captionBox"
               style={{
                 border: "1px solid rgb(255, 255, 255)",
@@ -116,17 +117,18 @@ function Carousel() {
               }}
             >
               {images[currentIndex].tag}
-            </div>
+            </div> */}
             <div
-              className="bannerT topP20 "
+              className="bannerT  topP20 col-6 "
               style={{
-                paddingTop: "20px",
+                paddingTop: "40px",
                 fontFamily: "Lato, sans-serif",
                 fontWeight: "700",
                 fontSize: "43px",
                 lineHeight: "40px",
                 letterSpacing: "-0.78px",
                 color: "rgb(255, 255, 255)",
+                marginTop:'7.5rem'
               }}
             >
               {images[currentIndex].title}
@@ -148,7 +150,7 @@ function Carousel() {
                 fontSize: "16px",
                 color: "rgb(255, 255, 255)",
                 lineHeight: "22px",
-                maxWidth: "360px",
+                maxWidth: "620px",
                 paddingLeft: "15px",
                 borderLeft: "6px solid rgb(255, 255, 255)",
               }}

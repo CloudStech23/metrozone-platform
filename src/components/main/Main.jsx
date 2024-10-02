@@ -15,7 +15,7 @@ function Main() {
   const cardData = [
     {
       id: 1,
-      title: "Health-Care",
+      title: "Health",
       imageUrl: "fas fa-heartbeat",
       description: [
         "10 years of impactful healthcare services.",
@@ -26,18 +26,7 @@ function Main() {
     },
     {
       id: 2,
-      title: "Sports and Recreation",
-      imageUrl: "fas fa-trophy",
-      description: [
-        "8 years of promoting sports in communities.",
-        "Direct impact on 100,000 participants.",
-        "Events held in Jammu, Poonch, and Udhampur.",
-        "Campaign fund raised: INR 6,50,000.",
-      ],
-    },
-    {
-      id: 3,
-      title: "Education and Training",
+      title: "Education",
       imageUrl: "fas fa-graduation-cap",
       description: [
         "12 years of advancing education and skill development.",
@@ -47,15 +36,26 @@ function Main() {
       ],
     },
     {
-      id: 4,
-      title: "Army",
-      imageUrl: "fas fa-user-shield",
+      id: 3,
+      title: "Sports",
+      imageUrl: "fas fa-trophy",
       description: [
-        "7 years of organizing army-based community programs.",
-        "Engaged 150,000 beneficiaries.",
-        "Events organized in Rajouri, Kargil, and Kupwara.",
-        "Campaign fund raised: INR 8,00,000.",
+        "8 years of promoting sports in communities.",
+        "Direct impact on 100,000 participants.",
+        "Events held in Jammu, Poonch, and Udhampur.",
+        "Campaign fund raised: INR 6,50,000.",
       ],
+    },
+    {
+      id: 4,
+      title: "Womens Empowerment",
+      imageUrl: "fas fa-female",
+      description: [
+        "7 years of organizing women’s empowerment programs.",
+        "Engaged over 150,000 women in skill development and leadership ",
+        "Programs conducted in Rajouri, Kargil, and Kupwara to uplift local women.",
+        "Funds raised: INR 8,00,000 for women’s education and self-sustainability."
+      ]
     },
   ];
   
@@ -65,7 +65,7 @@ function Main() {
       <Carousel />
 
       <div className="container custom-container">
-        <div className="containerBody py-5">
+        <div className="containerBody py-5 mt-5">
           <div
             className="bodytextPara"
             style={{ fontFamily: "Lato, sans-serif" }}
@@ -105,7 +105,7 @@ function Main() {
               fontFamily: "Lato, sans-serif",
             }}
           >
-            Our Approach
+            Focus Area
           </h2>
 
           <MDBRow className="justify-content-center align-items-stretch">

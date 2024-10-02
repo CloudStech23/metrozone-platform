@@ -1,0 +1,4 @@
+/* Add this to your global CSS file */
+.slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: rgb(255, 255, 255);}

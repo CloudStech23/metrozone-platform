@@ -6,7 +6,6 @@ import { db } from "../../Firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import Loader from "./Loader";
 
-
 // const events = [
 //   {
 //     event_name: "Medical Camp in Urban Area",
@@ -76,8 +75,8 @@ const cardData = [
     color: "#FCA743",
   },
   {
-    title: "Army",
-    category: "fas fa-user-shield fa-2x",
+    title: "Womens Empowerment",
+    category: "fas fa-female fa-2x",
     content: "This card provides additional details on a specific topic.",
     link: "#",
     color: "#BA69AC",
@@ -97,39 +96,39 @@ function Event() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const eventsCollection = collection(db, 'events');
-        
+        const eventsCollection = collection(db, "events");
+
         // Order events by 'createdAt' field in descending order
-        const eventsQuery = query(eventsCollection, orderBy('createdAt', 'desc'));
-        
+        const eventsQuery = query(
+          eventsCollection,
+          orderBy("createdAt", "desc")
+        );
+
         const eventsSnapshot = await getDocs(eventsQuery);
-        const eventsList = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        
-        setEvents(eventsList);  // Set the ordered events
+        const eventsList = eventsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setEvents(eventsList); // Set the ordered events
       } catch (error) {
-        setError('Error fetching events');
-        console.error('Error fetching events:', error);
+        setError("Error fetching events");
+        console.error("Error fetching events:", error);
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchEvents();
   }, []);
 
-
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-
-
-
-
 
   const cardStyle = {
     width: "93%",
@@ -157,9 +156,13 @@ function Event() {
         className="text-primary pb-1 mb-4 "
         style={{ fontSize: "22px", borderBottom: "5px solid #2968da" }}
       >
-        <p style={{ borderBottom: "1px solid #2968da" }}>Our Impactful Moments</p>
+        <p 
+        // style={{ borderBottom: "1px solid #2968da" }}
+        >
+          Our Impactful Moments
+        </p>
 
-        <div>
+        {/* <div>
           <div className="container d-xl-block mt-4 d-none">
             <div className="row justify-content-center">
               {cardData.map((card, index) => (
@@ -195,7 +198,7 @@ function Event() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </h2>
       <MDBRow className="">
         {events.map((event) => (

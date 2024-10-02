@@ -1,5 +1,50 @@
 .yellow-line {
-    border-bottom: 10px solid rgb(29, 132, 222);
-    clear: both;
+  border-bottom: 10px solid rgb(29, 132, 222);
+  clear: both;
+}
+.fixed-title-container {
+  height: 20px; /* Adjust this value as needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.fixed-card {
+  min-height: 200px; /* Set a minimum height for the card */
+}
+.first-line {
+  max-width: 40%; /* Control how much space the first part takes on larger screens */
+}
+
+.second-line {
+  width: 100%;
+}
+
+/* Responsive for mobile phones */
+@media (max-width: 768px) {
+  .first-line, .second-line {
+    width: 100%;
   }
-  
+
+  .first-line {
+    max-width: 100%; /* Allow the first line to take the full width on mobile */
+    white-space: normal; /* Allow the first line to wrap if necessary */
+  }
+
+  .second-line {
+    margin-top: 5px; /* Add spacing between lines if necessary */
+  }
+}
+
+.slick-dots li button:before {
+  color: rgb(224, 223, 223) !important; /* Force the dots to be white */
+  opacity: 1 !important; /* Ensure full visibility */
+}
+
+.slick-dots li.slick-active button:before {
+  color: rgb(36, 138, 222) !important; /* Active dot also white */
+  opacity: 1 !important;
+}
+
+
+
