@@ -33,6 +33,44 @@ function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
+  const [hhieght, setHhieght] = useState("9rem");
+
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setHhieght("0rem");
+    } else {
+      setHhieght("9rem");
+    }
+  };
+
+  const goToPrevious = () => {
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      );
+      setFade(true);
+    }, 700);
+  };
+
+  const goToNext = () => {
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setFade(true);
+    }, 700);
+  };
+
+  useEffect(() => {
+    // Check screen size initially
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,7 +79,7 @@ function Carousel() {
         setTimeout(() => {
           setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
           setFade(true);
-        }, 700);
+        }, 500);
       }
     }, 4000);
 
@@ -51,20 +89,20 @@ function Carousel() {
   return (
     <div
       className="bg-CSR"
-      style={{ minHeight: "600px", position: "relative" }} // Increased height
+      style={{ minHeight: "600px", position: "relative" }}
       onMouseEnter={() => setIsPaused(true)} // Pause on hover
       onMouseLeave={() => setIsPaused(false)} // Resume on mouse leave
     >
       <Navbar />
       <div
         className="clear captionP"
-        style={{ paddingTop: "150px", clear: "both" }} // Adjusted for new height
+        style={{ paddingTop: "150px", clear: "both" }}
       />
       <div className="container" style={{ maxWidth: "1210px", width: "100%" }}>
         <div
           style={{
             width: "100%",
-            height: "620px", // Adjusted height for the image
+            height: "620px",
             position: "absolute",
             top: 0,
             left: 0,
@@ -76,7 +114,7 @@ function Carousel() {
             alt="Carousel Background"
             style={{
               width: "100%",
-              height: "100%", // Makes sure the image takes up full height
+              height: "100%",
               objectFit: "cover",
               opacity: fade ? 1 : 0,
               transition: "opacity 1s ease-in-out",
@@ -90,36 +128,18 @@ function Carousel() {
               left: 0,
               width: "100%",
               height: "620px",
-              background: "rgb(0 0 0 / 50%)", // Adds the black overlay
+              background: "rgb(0 0 0 / 50%)",
               zIndex: 1,
             }}
           />
         </div>
-        <div
-          style={{ position: "relative", zIndex: 2, marginBottom: "5rem" }}
-        >
+        <div style={{ position: "relative", zIndex: 2, marginTop: `${hhieght}` }}>
           <div
             className="captionPL"
             style={{ paddingLeft: "15px", color: "white" }}
           >
-            {/* <div
-              className="captionBox"
-              style={{
-                border: "1px solid rgb(255, 255, 255)",
-                padding: "5px 8px",
-                display: "inline-block",
-                fontFamily: "Lato, sans-serif",
-                fontWeight: "300",
-                fontSize: "11px",
-                lineHeight: "12px",
-                color: "rgb(255, 255, 255)",
-                letterSpacing: "2px",
-              }}
-            >
-              {images[currentIndex].tag}
-            </div> */}
             <div
-              className="bannerT  topP20 col-6 "
+              className="bannerT topP20"
               style={{
                 paddingTop: "40px",
                 fontFamily: "Lato, sans-serif",
@@ -128,7 +148,6 @@ function Carousel() {
                 lineHeight: "40px",
                 letterSpacing: "-0.78px",
                 color: "rgb(255, 255, 255)",
-                marginTop:'7.5rem'
               }}
             >
               {images[currentIndex].title}
@@ -158,6 +177,44 @@ function Carousel() {
               {images[currentIndex].caption}
             </div>
           </div>
+        </div>
+
+        {/* Navigation Buttons */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "20px",
+            right: "20px",
+            display: "flex",
+            gap: "10px",
+            zIndex: 3, // Make sure buttons are on top
+          }}
+          className="d-xl-block d-none"
+        >
+          <button
+            onClick={goToPrevious}
+            style={{
+              padding: "10px 15px",
+              backgroundColor: "transparent",
+              color: "white",
+              border: "1px solid white",
+              cursor: "pointer",
+            }}
+          >
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <button
+            onClick={goToNext}
+            style={{
+              padding: "10px 15px",
+              backgroundColor: "transparent",
+              color: "white",
+              border: "1px solid white",
+              cursor: "pointer",
+            }}
+          >
+            <i class="fas fa-arrow-right"></i>
+          </button>
         </div>
       </div>
     </div>

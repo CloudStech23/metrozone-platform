@@ -192,16 +192,16 @@ function Epage() {
       <div className="container" style={{ marginTop: "6rem" }}>
         <div className="row justify-content-center">
           {/* Single card containing all sections */}
-          <div className="col-lg-10 col-md-12">
+          <div className="col-lg-11 col-md-12">
             <div
-              className="card rounded py-4 fixed-card"
+              className="card rounded py-2 fixed-card"
               style={{ background: "rgb(71 104 176)" }}
             >
               <div className="card-body d-flex flex-column flex-md-row justify-content-between align-items-center text-white">
                 {/* Section 1 */}
                 <div
                   className="d-flex justify-content-center align-items-center text-center mb-3 mb-md-0"
-                  style={{ flex: 0.9 }}
+                  style={{ flex: 1 }}
                 >
                   <div className="me-3"></div>
                   <div>
@@ -232,7 +232,7 @@ function Epage() {
                 {/* Section 2 */}
                 <div
                   className="d-flex justify-content-center align-items-center text-center mb-3 mb-md-0"
-                  style={{ flex: 0.9 }}
+                  style={{ flex: 1 }}
                 >
                   <div>
                     <div className="d-flex align-items-center">
@@ -279,7 +279,7 @@ function Epage() {
                 {/* Section 3 */}
                 <div
                   className="d-flex justify-content-center align-items-center text-center"
-                  style={{ flex: 0.9 }}
+                  style={{ flex: 1 }}
                 >
                   <div>
                     <h3 className="fs-3 fs-md-2 fw-bold mb-0">
@@ -315,7 +315,7 @@ function Epage() {
         </div>
         <div className="containerBody mt-2 py-4">
           <h2 className="text-primary  pb-1" style={{ fontSize: "22px" }}>
-            Program Details <i class="bi bi-exclamation-circle"></i>
+            Program Details
           </h2>
           <hr />
           <div className="bodytextPara">{event.description}</div>
@@ -360,7 +360,6 @@ function Epage() {
                     }}
                     onClick={() => openPopUp(index)}
                   />
-                  
                 </div>
               ))}
             </div>
@@ -381,10 +380,25 @@ function Epage() {
                       alt={image.alt}
                       className="carousel-image"
                     />
-                     {/* <div className="watermark">Your Watermark</div> */}
+                    {/* <div className="watermark">Your Watermark</div> */}
                   </div>
                 ))}
               </Slider>
+            </div>
+            <div style={{ position: "absolute", top: "50px", right: "20px" }} className=" ">
+              <div
+                className="close-button "
+                onClick={closePopUp}
+                style={{
+                  backgroundColor: "transparent",
+                  color: "white",
+                  border: "1px solid white",
+                  padding: "2px 10px",
+                  cursor: "pointer",
+                }}
+              >
+                &times;
+              </div>
             </div>
           </div>
         )}
@@ -421,10 +435,9 @@ function Epage() {
           max-width: 100%;
           max-height: 100%;
           object-fit: contain; /* Ensures images maintain aspect ratio */
-          width: auto;
+          width: 1000px;
           height: 100%; /* Ensures the image fills the height uniformly */
         }
-         
       `}</style>
     </div>
   );
