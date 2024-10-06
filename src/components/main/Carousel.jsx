@@ -186,7 +186,7 @@ function Carousel() {
             bottom: "20px",
             right: "20px",
             display: "flex",
-            gap: "10px",
+            gap: "20px",
             zIndex: 3, // Make sure buttons are on top
           }}
           className="d-xl-block d-none"
@@ -199,6 +199,7 @@ function Carousel() {
               color: "white",
               border: "1px solid white",
               cursor: "pointer",
+              margin:'8px'
             }}
           >
             <i class="fas fa-arrow-left"></i>

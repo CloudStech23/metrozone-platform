@@ -22,6 +22,7 @@ function Epage() {
   const [textWidth, setTextWidth] = useState("37rem");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+   
 
   const openPopUp = (index) => {
     setSelectedImageIndex(index);
@@ -40,7 +41,7 @@ function Epage() {
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    dots: true,
+    // dots: true,
   };
 
   useEffect(() => {
@@ -64,6 +65,7 @@ function Epage() {
       if (window.innerWidth <= 768) {
         setColumnCount(2); // Use 2 columns for phone screens
         setTextWidth("100%");
+        
       } else {
         setColumnCount(3); // Use 3 columns for larger screens
       }
@@ -380,12 +382,15 @@ function Epage() {
                       alt={image.alt}
                       className="carousel-image"
                     />
-                    {/* <div className="watermark">Your Watermark</div> */}
                   </div>
                 ))}
               </Slider>
             </div>
-            <div style={{ position: "absolute", top: "50px", right: "20px" }} className=" ">
+             
+            <div
+              style={{ position: "absolute", top: "50px", right: "20px" }}
+              className=" "
+            >
               <div
                 className="close-button "
                 onClick={closePopUp}

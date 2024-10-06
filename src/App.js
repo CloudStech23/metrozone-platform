@@ -11,7 +11,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/E_page/:id" element={<EPage />} />
+        <Route path="/Events-details/:id" element={<EPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

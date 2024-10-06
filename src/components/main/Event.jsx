@@ -52,41 +52,41 @@ import Loader from "./Loader";
 //   },
 // ];
 
-const cardData = [
-  {
-    title: "Health-Care",
-    category: "fas fa-heartbeat fa-2x",
+// const cardData = [
+//   {
+//     title: "Health-Care",
+//     category: "fas fa-heartbeat fa-2x",
 
-    link: "#",
-    color: "#3FCBA4",
-  },
-  {
-    title: "Sports and Recreation",
-    category: "fas fa-trophy fa-2x",
-    content: "Another example of card content with relevant information.",
-    link: "#",
-    color: "#A18870",
-  },
-  {
-    title: "Education and Training",
-    category: "fas fa-graduation-cap fa-2x",
-    content: "A different set of text describing what the card is about.",
-    link: "#",
-    color: "#FCA743",
-  },
-  {
-    title: "Womens Empowerment",
-    category: "fas fa-female fa-2x",
-    content: "This card provides additional details on a specific topic.",
-    link: "#",
-    color: "#BA69AC",
-  },
-];
+//     link: "#",
+//     color: "#3FCBA4",
+//   },
+//   {
+//     title: "Sports and Recreation",
+//     category: "fas fa-trophy fa-2x",
+//     content: "Another example of card content with relevant information.",
+//     link: "#",
+//     color: "#A18870",
+//   },
+//   {
+//     title: "Education and Training",
+//     category: "fas fa-graduation-cap fa-2x",
+//     content: "A different set of text describing what the card is about.",
+//     link: "#",
+//     color: "#FCA743",
+//   },
+//   {
+//     title: "Womens Empowerment",
+//     category: "fas fa-female fa-2x",
+//     content: "This card provides additional details on a specific topic.",
+//     link: "#",
+//     color: "#BA69AC",
+//   },
+// ];
 
 // Updated handleAlert function
-const handleAlert = (event_name) => {
-  alert(`This is ${event_name}`);
-};
+// const handleAlert = (event_name) => {
+//   alert(`This is ${event_name}`);
+// };
 
 function Event() {
   const [events, setEvents] = useState([]);
@@ -283,7 +283,7 @@ function Event() {
                     year: "numeric",
                   })}
                 </span>
-                <Link to={`/E_page/${event.id}`}>
+                <Link to={`/Events-details/${event.id}`}>
                   <i className="bi bi-arrow-right fs-4 text-white"></i>
                 </Link>
               </div>
