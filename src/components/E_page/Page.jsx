@@ -12,6 +12,7 @@ import Slider from "react-slick";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Logo from "../../Images/caro-img/Metrozone-logo.png";
 
 function Epage() {
   const { id } = useParams();
@@ -22,7 +23,6 @@ function Epage() {
   const [textWidth, setTextWidth] = useState("37rem");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-   
 
   const openPopUp = (index) => {
     setSelectedImageIndex(index);
@@ -41,6 +41,8 @@ function Epage() {
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
+    accessibility: true, // Enables keyboard arrow navigation
+    focusOnSelect: true,
     // dots: true,
   };
 
@@ -65,7 +67,6 @@ function Epage() {
       if (window.innerWidth <= 768) {
         setColumnCount(2); // Use 2 columns for phone screens
         setTextWidth("100%");
-        
       } else {
         setColumnCount(3); // Use 3 columns for larger screens
       }
@@ -175,19 +176,19 @@ function Epage() {
             >
               {event.title}
             </div>
-            {/* <div className="mt-2">
-              <span style={{}} className="fs-6">
+            <div className="mt-2">
+              <span style={{}} className="fs-5">
                 {event.eventVenue}
               </span>{" "}
               ,
-              <span style={{}} className="mx-2 fs-6">
+              <span style={{}} className="mx-2 fs-5">
                 {new Date(event.eventDate).toLocaleDateString("en-GB", {
                   day: "2-digit",
                   month: "short",
                   year: "numeric",
                 })}
               </span>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
@@ -202,23 +203,22 @@ function Epage() {
               <div className="card-body d-flex flex-column flex-md-row justify-content-between align-items-center text-white">
                 {/* Section 1 */}
                 <div
-                  className="d-flex justify-content-center align-items-center text-center mb-3 mb-md-0"
+                  className="d-flex flex-column justify-content-center align-items-center text-center mb-3 mb-md-0"
                   style={{ flex: 1 }}
                 >
                   <div className="me-3"></div>
-                  <div>
-                    <h3 className="fs-2 fs-md-1 fw-bold mb-0">
-                      <CountUp
-                        start={0}
-                        end={event.beneficiarynum}
-                        duration={3}
-                        separator=","
-                      />
-                    </h3>
-                    <p className="fs-6 fs-md-5 fixed-title-container">
-                      {event.beneficiarytext}
-                    </p>
-                  </div>
+                  <h3 className="fw-bold fs-md-1">Number of Beneficiary</h3>
+                  <h3 className="fs-2 fs-md-1 fw-bold mb-0">
+                    <CountUp
+                      start={0}
+                      end={event.beneficiarynum}
+                      duration={3}
+                      separator=","
+                    />
+                  </h3>
+                  <p className="fs-6 fs-md-5 fixed-title-container">
+                    {event.beneficiarytext}
+                  </p>
                 </div>
 
                 {/* Vertical separator */}
@@ -233,39 +233,24 @@ function Epage() {
 
                 {/* Section 2 */}
                 <div
-                  className="d-flex justify-content-center align-items-center text-center mb-3 mb-md-0"
+                  className="d-flex flex-column justify-content-center align-items-center text-center mb-3 mb-md-0"
                   style={{ flex: 1 }}
                 >
-                  <div>
-                    <div className="d-flex align-items-center">
-                      <h3 className="fs-2 fs-md-1 fw-bold mb-0">
-                        <CountUp
-                          start={0}
-                          end={event.value}
-                          duration={3}
-                          separator=","
-                        />
-                      </h3>
-                      <span className="mx-2 fs-2">
-                        <i className="fa fa-inr" aria-hidden="true"></i>
-                      </span>
-                      <span className="mx-2 fs-2">/</span>
-                      <h3 className="fs-2 fs-md-1 fw-bold mb-0">
-                        <CountUp
-                          start={0}
-                          end={event.quantity}
-                          duration={3}
-                          separator=","
-                        />
-                      </h3>
-                      <span className="fs-3 mx-1 fs-md-1 fw-bold mb-0">
-                        {event.unittype}
-                      </span>
-                    </div>
-                    <p className="fs-6 fs-md-5 fixed-title-container">
-                      {event.quantvaluetext}
-                    </p>
-                  </div>
+                  <h3 className="fw-bold fs-md-1 mb-2">Value of Project</h3>
+                  <h3 className="fs-2 fs-md-1 fw-bold mb-0">
+                    <span className="mx-2 fs-2">
+                      <i className="fa fa-inr" aria-hidden="true"></i>
+                    </span>
+                    <CountUp
+                      start={0}
+                      end={event.value}
+                      duration={3}
+                      separator=","
+                    />
+                  </h3>
+                  <p className="fs-6 fs-md-5 fixed-title-container">
+                    {event.quantvaluetext}
+                  </p>
                 </div>
 
                 {/* Vertical separator */}
@@ -280,24 +265,11 @@ function Epage() {
 
                 {/* Section 3 */}
                 <div
-                  className="d-flex justify-content-center align-items-center text-center"
+                  className="d-flex flex-column justify-content-center align-items-center text-center"
                   style={{ flex: 1 }}
                 >
-                  <div>
-                    <h3 className="fs-3 fs-md-2 fw-bold mb-0">
-                      {event.partner}
-                    </h3>
-                    <p className="fs-6 fs-md-5 text-center fixed-title-container">
-                      <span>{event.eventVenue}</span> -{" "}
-                      <span style={{}} className="mx-2 fs-6">
-                        {new Date(event.eventDate).toLocaleDateString("en-GB", {
-                          day: "2-digit",
-                          month: "short",
-                          year: "numeric",
-                        })}
-                      </span>
-                    </p>
-                  </div>
+                  <h3 className="fw-bold fs-md-1">In Association with</h3>
+                  <h3 className="fs-3 fs-md-2 fw-bold mb-0">{event.partner}</h3>
                 </div>
               </div>
             </div>
@@ -369,44 +341,74 @@ function Epage() {
         </div>
 
         {isOpen && (
-          <div className="popup-container" onClick={closePopUp}>
-            <div
-              className="carousel-popup"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Slider {...settings}>
-                {event.images.map((image, index) => (
-                  <div key={index} className="carousel-image-wrapper">
-                    <img
-                      src={image}
-                      alt={image.alt}
-                      className="carousel-image"
-                    />
-                  </div>
-                ))}
-              </Slider>
-            </div>
-             
-            <div
-              style={{ position: "absolute", top: "50px", right: "20px" }}
-              className=" "
-            >
-              <div
-                className="close-button "
-                onClick={closePopUp}
-                style={{
-                  backgroundColor: "transparent",
-                  color: "white",
-                  border: "1px solid white",
-                  padding: "2px 10px",
-                  cursor: "pointer",
-                }}
-              >
-                &times;
-              </div>
-            </div>
+  <div className="popup-container" onClick={closePopUp}>
+    <div
+      className="carousel-popup"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <Slider {...settings}>
+        {event.images.map((image, index) => (
+          <div key={index} className="carousel-image-wrapper" style={{ position: "relative" }}>
+            {/* Image */}
+            <img
+              src={image}
+              alt={image.alt || `image-${index}`}
+              className="carousel-image"
+              style={{ width: "100%", height: "auto" }}
+            />
+            {/* Logo in top-right corner */}
+            <img
+              src={Logo} // Replace this with the actual path to your logo
+              alt="Logo"
+              className="image-logo"
+              style={{
+                position: "absolute",
+                top: "10px",   
+                right: "10px",
+                width: "50px", // Adjust size as needed
+                height: "auto",
+                zIndex: 10, // Ensure logo is above other content
+                display: "block" // Make sure it's displayed
+              }}
+            />
           </div>
-        )}
+        ))}
+      </Slider>
+      <h5 className="text-white text-center">
+        <p className="fs-4 fs-md-5 text-center fixed-title-container">
+          <span>{event.eventVenue}</span> -{" "}
+          <span className="mx-2 fs-4">
+            {new Date(event.eventDate).toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            })}
+          </span>
+        </p>
+      </h5>
+    </div>
+
+    <div
+      style={{ position: "absolute", top: "50px", right: "20px" }}
+      className=""
+    >
+      <div
+        className="close-button"
+        onClick={closePopUp}
+        style={{
+          backgroundColor: "transparent",
+          color: "white",
+          border: "1px solid white",
+          padding: "2px 10px",
+          cursor: "pointer",
+        }}
+      >
+        &times;
+      </div>
+    </div>
+  </div>
+)}
+
       </div>
       <style jsx>{`
         .popup-container {
@@ -442,6 +444,16 @@ function Epage() {
           object-fit: contain; /* Ensures images maintain aspect ratio */
           width: 1000px;
           height: 100%; /* Ensures the image fills the height uniformly */
+        }
+        @media (max-width: 767.98px) {
+          .vertical-separator {
+            display: none; /* Hide vertical separator on small screens */
+          }
+        }
+        @media (min-width: 768px) {
+          .fixed-card {
+            margin: 0 auto; /* Center card on larger screens */
+          }
         }
       `}</style>
     </div>
