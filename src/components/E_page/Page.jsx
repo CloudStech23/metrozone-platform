@@ -23,6 +23,7 @@ function Epage() {
   const [textWidth, setTextWidth] = useState("37rem");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [caroimageheight , setCaroimageheight] = useState('600px');
 
   const openPopUp = (index) => {
     setSelectedImageIndex(index);
@@ -67,6 +68,7 @@ function Epage() {
       if (window.innerWidth <= 768) {
         setColumnCount(2); // Use 2 columns for phone screens
         setTextWidth("100%");
+        setCaroimageheight('300px');
       } else {
         setColumnCount(3); // Use 3 columns for larger screens
       }
@@ -117,14 +119,15 @@ function Epage() {
             style={{
               width: "100%",
               height: "600px",
-              objectFit: "cover",
+              objectFit: "cover", // Ensures image covers the entire div
+              objectPosition: " center center", // Centers the image
               position: "absolute",
               top: 0,
               left: 0,
-
               transition: "opacity 1s ease-in-out",
-              objectPosition: "top",
+              
             }}
+            className="mainImg"
           />
 
           <div
@@ -134,7 +137,7 @@ function Epage() {
               left: 0,
               width: "100%",
               height: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              backgroundColor: "rgba(0, 0, 0, 0.55)",
             }}
           />
         </div>
@@ -143,25 +146,13 @@ function Epage() {
             className="captionPL"
             style={{ paddingLeft: "15px", color: "white" }}
           >
-            {/* <div
-              className="captionBox"
-              style={{
-                border: "1px solid rgb(255, 255, 255)",
-                padding: "5px 8px",
-                display: "inline-block",
-                fontFamily: "Lato, sans-serif",
-                fontWeight: "300",
-                fontSize: "11px",
-                lineHeight: "12px",
-                color: "rgb(255, 255, 255)",
-                letterSpacing: "2px",
-              }}
-            >
-              {event.programType}
-            </div> */}
-            {/* <div style={{}} className="fs-5 mt-2">
-              {event.partner}
-            </div> */}
+            <span style={{}} className="mx-2 fs-5">
+              {new Date(event.eventDate).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })}
+            </span>
             <div
               style={{
                 paddingTop: "10px",
@@ -179,19 +170,12 @@ function Epage() {
             <div className="mt-2">
               <span style={{}} className="fs-5">
                 {event.eventVenue}
-              </span>{" "}
-              ,
-              <span style={{}} className="mx-2 fs-5">
-                {new Date(event.eventDate).toLocaleDateString("en-GB", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                })}
               </span>
             </div>
           </div>
         </div>
       </div>
+
       <div className="container" style={{ marginTop: "6rem" }}>
         <div className="row justify-content-center">
           {/* Single card containing all sections */}
@@ -211,12 +195,13 @@ function Epage() {
                   <h3 className="fs-2 fs-md-1 fw-bold mb-0">
                     <CountUp
                       start={0}
+                      d
                       end={event.beneficiarynum}
                       duration={3}
                       separator=","
                     />
                   </h3>
-                  <p className="fs-6 fs-md-5 fixed-title-container">
+                  <p className="fs-6 fs-md-5 h-100 fixed-title-container">
                     {event.beneficiarytext}
                   </p>
                 </div>
@@ -248,7 +233,7 @@ function Epage() {
                       separator=","
                     />
                   </h3>
-                  <p className="fs-6 fs-md-5 fixed-title-container">
+                  <p className="fs-6 fs-md-5 h-100 fixed-title-container">
                     {event.quantvaluetext}
                   </p>
                 </div>
@@ -269,7 +254,9 @@ function Epage() {
                   style={{ flex: 1 }}
                 >
                   <h3 className="fw-bold fs-md-1">In Association with</h3>
-                  <h3 className="fs-3 fs-md-2 fw-bold mb-0">{event.partner}</h3>
+                  <h3 className="fs-3 fs-md-2 h-100 fw-bold mb-0">
+                    {event.partner}
+                  </h3>
                 </div>
               </div>
             </div>
@@ -341,74 +328,77 @@ function Epage() {
         </div>
 
         {isOpen && (
-  <div className="popup-container" onClick={closePopUp}>
-    <div
-      className="carousel-popup"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <Slider {...settings}>
-        {event.images.map((image, index) => (
-          <div key={index} className="carousel-image-wrapper" style={{ position: "relative" }}>
-            {/* Image */}
-            <img
-              src={image}
-              alt={image.alt || `image-${index}`}
-              className="carousel-image"
-              style={{ width: "100%", height: "auto" }}
-            />
-            {/* Logo in top-right corner */}
-            <img
-              src={Logo} // Replace this with the actual path to your logo
-              alt="Logo"
-              className="image-logo"
-              style={{
-                position: "absolute",
-                top: "10px",   
-                right: "10px",
-                width: "50px", // Adjust size as needed
-                height: "auto",
-                zIndex: 10, // Ensure logo is above other content
-                display: "block" // Make sure it's displayed
-              }}
-            />
+          <div className="popup-container" onClick={closePopUp}>
+            <div
+              className="carousel-popup"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Slider {...settings}>
+                {event.images.map((image, index) => (
+                  <div
+                    key={index}
+                    className="carousel-image-wrapper"
+                    style={{ position: "relative" }}
+                  >
+                    {/* Image */}
+                    <img
+                      src={image}
+                      alt={image.alt || `image-${index}`}
+                      className="carousel-image"
+                      style={{ width: "100%", height: "auto" }}
+                    />
+                    {/* Logo in top-right corner */}
+                    <img
+                      src={Logo} // Replace this with the actual path to your logo
+                      alt="Logo"
+                      className="image-logo"
+                      style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                        width: "50px", // Adjust size as needed
+                        height: "auto",
+                        zIndex: 10, // Ensure logo is above other content
+                        display: "block", // Make sure it's displayed
+                      }}
+                    />
+                  </div>
+                ))}
+              </Slider>
+              <h5 className="text-white text-center">
+                <p className="fs-4 fs-md-5 text-center fixed-title-container">
+                  <span>{event.eventVenue}</span> -{" "}
+                  <span className="mx-2 fs-4">
+                    {new Date(event.eventDate).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
+                </p>
+              </h5>
+            </div>
+
+            <div
+              style={{ position: "absolute", top: "50px", right: "20px" }}
+              className=""
+            >
+              <div
+                className="close-button"
+                onClick={closePopUp}
+                style={{
+                  backgroundColor: "transparent",
+                  color: "white",
+                  border: "1px solid white",
+                  padding: "2px 10px",
+                  cursor: "pointer",
+                }}
+              >
+                &times;
+              </div>
+            </div>
           </div>
-        ))}
-      </Slider>
-      <h5 className="text-white text-center">
-        <p className="fs-4 fs-md-5 text-center fixed-title-container">
-          <span>{event.eventVenue}</span> -{" "}
-          <span className="mx-2 fs-4">
-            {new Date(event.eventDate).toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            })}
-          </span>
-        </p>
-      </h5>
-    </div>
-
-    <div
-      style={{ position: "absolute", top: "50px", right: "20px" }}
-      className=""
-    >
-      <div
-        className="close-button"
-        onClick={closePopUp}
-        style={{
-          backgroundColor: "transparent",
-          color: "white",
-          border: "1px solid white",
-          padding: "2px 10px",
-          cursor: "pointer",
-        }}
-      >
-        &times;
-      </div>
-    </div>
-  </div>
-)}
-
+        )}
       </div>
       <style jsx>{`
         .popup-container {
@@ -434,7 +424,7 @@ function Epage() {
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 600px; /* Fixed height for all images */
+          height: ${caroimageheight}; /* Fixed height for all images */
           overflow: hidden;
         }
 

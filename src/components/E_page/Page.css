@@ -45,6 +45,26 @@
   color: rgb(36, 138, 222) !important; /* Active dot also white */
   opacity: 1 !important;
 }
+@media only screen and (max-width: 768px) {
+  .mainImg {
+    width: 100vw !important; 
+    height: 600px !important; /* Adjust height based on width */
+    object-fit: fill !important;  
+    object-position: center center !important;  /* Centers the image in mobile view */
+  }
+
+  .container {
+     max-width: 100%; 
+    height: auto; /* Dynamic height */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  img {
+    height: 100vh; /* Full viewport height */
+    width: auto; /* Adjust width based on height */
+  }
+}
 
 
 

@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Main from "./components/main/Main";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EPage from "./components/E_page/Page";
