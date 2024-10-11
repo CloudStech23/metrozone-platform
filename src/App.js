@@ -6,6 +6,8 @@ import Footer from "./components/main/Footer";
 import ScrollToTop from "./components/main/SrollToTop";
 
 function App() {
+
+  
   useEffect(() => {
     // Disable right-click context menu
     const handleContextMenu = (e) => {

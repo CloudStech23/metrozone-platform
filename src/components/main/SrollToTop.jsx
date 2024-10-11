@@ -5,8 +5,11 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]); // Trigger scrollTo when pathname changes
+    // Add a small delay to ensure mobile layout is rendered before scrolling
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100); // Delay might help in mobile responsiveness
+  }, [pathname]);
 
   return null;
 };
