@@ -133,7 +133,9 @@ function Carousel() {
             }}
           />
         </div>
-        <div style={{ position: "relative", zIndex: 2, marginTop: `${hhieght}` }}>
+        <div
+          style={{ position: "relative", zIndex: 2, marginTop: `${hhieght}` }}
+        >
           <div
             className="captionPL"
             style={{ paddingLeft: "15px", color: "white" }}
@@ -199,7 +201,7 @@ function Carousel() {
               color: "white",
               border: "1px solid white",
               cursor: "pointer",
-              margin:'8px'
+              margin: "8px",
             }}
           >
             <i class="fas fa-arrow-left"></i>
