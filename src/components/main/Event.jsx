@@ -6,92 +6,54 @@ import { db } from "../../Firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import Loader from "./Loader";
 
-// const events = [
-//   {
-//     event_name: "Medical Camp in Urban Area",
-//     date: "25th Sept 2024",
-//     location: "Jammu & Kashmir",
-//     category: "Health-Care",
-//     image_url: img1,
-//     partner: "Metrozone Group",
-//   },
-//   {
-//     event_name: "Art and Culture Expo",
-//     date: "5th October 2024",
-//     location: "Los Angeles",
-//     category: "Exhibition",
-//     image_url: "https://mdbootstrap.com/img/new/standard/nature/185.webp",
-//   },
-//   {
-//     event_name: "Tech Innovation Conference",
-//     date: "15th November 2024",
-//     location: "San Francisco",
-//     category: "Conference",
-//     image_url: "https://mdbootstrap.com/img/new/standard/nature/184.webp",
-//   },
-//   {
-//     event_name: "Nature Photography Workshop",
-//     date: "25th September 2024",
-//     location: "New York City",
-//     category: "Workshop",
-//     image_url: "https://mdbootstrap.com/img/new/standard/nature/186.webp",
-//   },
-//   {
-//     event_name: "Art and Culture Expo",
-//     date: "5th October 2024",
-//     location: "Los Angeles",
-//     category: "Exhibition",
-//     image_url: "https://mdbootstrap.com/img/new/standard/nature/185.webp",
-//   },
-//   {
-//     event_name: "Tech Innovation Conference",
-//     date: "15th November 2024",
-//     location: "San Francisco",
-//     category: "Conference",
-//     image_url: "https://mdbootstrap.com/img/new/standard/nature/184.webp",
-//   },
-// ];
+const cardData = [
+  {
+    title: "All Events",
+    category: "fas fa-globe fa-2x",
+    content: "This card provides additional details on a specific topic.",
+    link: "#",
+    color: "rgb(115 110 201)",
+  },
+  {
+    title: "Health",
+    category: "fas fa-heartbeat fa-2x",
 
-// const cardData = [
-//   {
-//     title: "Health-Care",
-//     category: "fas fa-heartbeat fa-2x",
-
-//     link: "#",
-//     color: "#3FCBA4",
-//   },
-//   {
-//     title: "Sports and Recreation",
-//     category: "fas fa-trophy fa-2x",
-//     content: "Another example of card content with relevant information.",
-//     link: "#",
-//     color: "#A18870",
-//   },
-//   {
-//     title: "Education and Training",
-//     category: "fas fa-graduation-cap fa-2x",
-//     content: "A different set of text describing what the card is about.",
-//     link: "#",
-//     color: "#FCA743",
-//   },
-//   {
-//     title: "Womens Empowerment",
-//     category: "fas fa-female fa-2x",
-//     content: "This card provides additional details on a specific topic.",
-//     link: "#",
-//     color: "#BA69AC",
-//   },
-// ];
-
-// Updated handleAlert function
-// const handleAlert = (event_name) => {
-//   alert(`This is ${event_name}`);
-// };
+    link: "#",
+    color: "#3FCBA4",
+  },
+  {
+    title: "Sports",
+    category: "fas fa-trophy fa-2x",
+    content: "Another example of card content with relevant information.",
+    link: "#",
+    color: "#A18870",
+  },
+  {
+    title: "Education",
+    category: "fas fa-graduation-cap fa-2x",
+    content: "A different set of text describing what the card is about.",
+    link: "#",
+    color: "#FCA743",
+  },
+  {
+    title: "Womens Empowerment",
+    category: "fas fa-female fa-2x",
+    content: "This card provides additional details on a specific topic.",
+    link: "#",
+    color: "#BA69AC",
+  },
+];
 
 function Event() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("All Events");
+  const [cardwidth, setCardwidth] = useState("14rem");
+  const [cardheight, setCardheight] = useState("17rem");
+
+
+  
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -101,7 +63,7 @@ function Event() {
         // Order events by 'createdAt' field in descending order
         const eventsQuery = query(
           eventsCollection,
-          orderBy("createdAt", "desc")
+          orderBy("eventDate", "desc")
         );
 
         const eventsSnapshot = await getDocs(eventsQuery);
@@ -122,6 +84,27 @@ function Event() {
     fetchEvents();
   }, []);
 
+  useEffect(() => {
+    const updateCardDimensions = () => {
+      if (window.innerWidth < 420) {
+        setCardheight("12rem");
+        setCardwidth("11.3rem");
+      } else {
+        setCardheight("17rem");
+        setCardwidth("14rem");
+      }
+    };
+
+    // Set initial dimensions
+    updateCardDimensions();
+
+    // Add a listener for window resize
+    window.addEventListener("resize", updateCardDimensions);
+
+    // Cleanup listener on component unmount
+    return () => window.removeEventListener("resize", updateCardDimensions);
+  }, []);
+
   if (loading) {
     return <Loader />;
   }
@@ -129,6 +112,8 @@ function Event() {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
+ 
 
   const cardStyle = {
     width: "93%",
@@ -146,9 +131,10 @@ function Event() {
     height: "320px",
   };
 
-  // const imageHoverStyle = {
-  //   transform: "scale(1.1)", // Zoom effect
-  // };
+  const filteredEvents =
+    activeFilter === "All Events"
+      ? events
+      : events.filter((event) => event.programType === activeFilter);
 
   return (
     <div>
@@ -156,25 +142,25 @@ function Event() {
         className="text-primary pb-1 mb-4 "
         style={{ fontSize: "22px", borderBottom: "5px solid #2968da" }}
       >
-        <p 
+        <p
         // style={{ borderBottom: "1px solid #2968da" }}
         >
           Our Impactful Moments
         </p>
 
-        {/* <div>
-          <div className="container d-xl-block mt-4 d-none">
+        <div>
+          <div className="container   mt-4  ">
             <div className="row justify-content-center">
               {cardData.map((card, index) => (
                 <div
                   className="col-lg-3 col-md-2 col-sm-10 mb-4"
                   style={{
-                    height: "17rem",
-                    width: "17rem",
+                    height: cardheight,
+                    width: cardwidth,
                     cursor: "pointer",
                   }}
                   key={index}
-                  onClick={() => handleAlert(card.title)} // Pass card title to handleAlert
+                  onClick={() => setActiveFilter(card.title)}
                 >
                   <div
                     className="shadow h-100 position-relative"
@@ -198,60 +184,61 @@ function Event() {
               ))}
             </div>
           </div>
-        </div> */}
+        </div>
       </h2>
       <MDBRow className="">
-        {events.map((event) => (
-          <MDBCol lg="4" md="6" sm="12" className="mb-4" key={event.id}>
-            <MDBCard style={cardStyle}>
-              <div
-                className="image-container"
-                style={{
-                  overflow: "hidden", // Ensures zoom effect doesn't break the layout
-                }}
-              >
-                <MDBCardImage
-                  src={event.mainImage}
-                  position="top"
-                  alt={event.title}
-                  style={imageStyle}
-                  className="event-image"
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = "scale(1.1)")
-                  } // Zoom on hover
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = "scale(1)")
-                  } // Reset zoom
-                />
-              </div>
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event) => (
+            <MDBCol lg="4" md="6" sm="12" className="mb-4" key={event.id}>
+              <MDBCard style={cardStyle}>
+                <div
+                  className="image-container"
+                  style={{
+                    overflow: "hidden", // Ensures zoom effect doesn't break the layout
+                  }}
+                >
+                  <MDBCardImage
+                    src={event.mainImage}
+                    position="top"
+                    alt={event.title}
+                    style={imageStyle}
+                    className="event-image"
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.transform = "scale(1.1)")
+                    } // Zoom on hover
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.transform = "scale(1)")
+                    } // Reset zoom
+                  />
+                </div>
 
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: "rgba(0, 0, 0, 0.5)",
-                  borderRadius: "7px",
-                }}
-              ></div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: "rgba(0, 0, 0, 0.5)",
+                    borderRadius: "7px",
+                  }}
+                ></div>
 
-              <div
-                style={{
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  color: "#fff",
-                  backgroundColor: "rgba(0, 0, 0, 0.7)",
-                  padding: "5px 10px",
-                  borderRadius: "5px",
-                  fontSize: "12px",
-                }}
-              >
-                {event.programType}
-              </div>
-              {/* <div
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    color: "#fff",
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                    padding: "5px 10px",
+                    borderRadius: "5px",
+                    fontSize: "12px",
+                  }}
+                >
+                  {event.programType}
+                </div>
+                {/* <div
                 style={{
                   position: "absolute",
                   top: "10px",
@@ -266,30 +253,35 @@ function Event() {
                 {event.partner}
               </div> */}
 
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "20px",
-                  left: "20px",
-                  color: "#fff",
-                }}
-              >
-                <h4 style={{ margin: 0 }}>{event.title}</h4>
-                <span style={{ margin: "3px 0" }}>{event.eventVenue}</span>
-                <span style={{ margin: "3px 0", display: "block" }}>
-                  {new Date(event.eventDate).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </span>
-                <Link to={`/Events-details/${event.id}`}>
-                  <i className="bi bi-arrow-right fs-4 text-white"></i>
-                </Link>
-              </div>
-            </MDBCard>
-          </MDBCol>
-        ))}
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "20px",
+                    left: "20px",
+                    color: "#fff",
+                  }}
+                >
+                  <h4 style={{ margin: 0 }}>{event.title}</h4>
+                  <span style={{ margin: "3px 0" }}>{event.eventVenue}</span>
+                  <span style={{ margin: "3px 0", display: "block" }}>
+                    {new Date(event.eventDate).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
+                  <Link to={`/Events-details/${event.id}`}>
+                    <i className="bi bi-arrow-right fs-4 text-white"></i>
+                  </Link>
+                </div>
+              </MDBCard>
+            </MDBCol>
+          ))
+        ) : (
+          <div className="text-center mt-4 fs-4">
+            <p>No events available for the selected category.</p>
+          </div>
+        )}
       </MDBRow>
     </div>
   );

@@ -15,26 +15,26 @@ function App() {
     };
 
     // Disable keyboard shortcuts
-    const handleKeyDown = (e) => {
-      if (
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && e.key === "I") ||
-        (e.ctrlKey && e.shiftKey && e.key === "J") ||
-        (e.ctrlKey && e.key === "U")
-      ) {
-        e.preventDefault();
-      }
-    };
+    // const handleKeyDown = (e) => {
+    //   if (
+    //     e.key === "F12" ||
+    //     (e.ctrlKey && e.shiftKey && e.key === "I") ||
+    //     (e.ctrlKey && e.shiftKey && e.key === "J") ||
+    //     (e.ctrlKey && e.key === "U")
+    //   ) {
+    //     e.preventDefault();
+    //   }
+    // };
 
     // Attach event listeners
-    document.addEventListener("contextmenu", handleContextMenu);
-    document.addEventListener("keydown", handleKeyDown);
+    // document.addEventListener("contextmenu", handleContextMenu);
+    // document.addEventListener("keydown", handleKeyDown);
 
     // Cleanup event listeners on component unmount
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
+    // return () => {
+    //   document.removeEventListener("contextmenu", handleContextMenu);
+    //   document.removeEventListener("keydown", handleKeyDown);
+    // };
   }, []);
   return (
     <BrowserRouter>
