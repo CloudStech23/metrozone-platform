@@ -63,9 +63,12 @@
     <style>
       html,
       body {
-        height: 100%;
-        overflow: auto;
+        height:auto;
+          /* Ensure vertical scrolling is explicitly enabled */
+        margin: 0; /* Avoid any unexpected margin issues */
+        overflow-x: hidden;
       }
+
       * {
         box-sizing: border-box;
       }
