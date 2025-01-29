@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -102,12 +103,12 @@ function Footer() {
           style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
         >
           © 2024 Copyright:
-          <a
+          <Link
             className="text-reset mx-2 fw-bold text-decoration-none"
-            href="https://mdbootstrap.com/"
+            href="/https://metrozone-csr.vercel.app/"
           >
             Metrozone CSR Activities
-          </a>
+          </Link>
         </div>
       </footer>
     </div>
