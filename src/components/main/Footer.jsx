@@ -7,9 +7,9 @@ function Footer() {
         className="text-center text-lg-start bg-body-tertiary text-muted"
         style={{ background: "#e9e9e9" }}
       >
-        <section className="  p-4 border-bottom"></section>
+        <section className=" border-bottom"></section>
 
-        <section>
+        {/* <section>
           <div className="container text-center text-md-start mt-4">
             <div className="row mt-3">
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
@@ -95,7 +95,7 @@ function Footer() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <div
           className="text-center p-4"

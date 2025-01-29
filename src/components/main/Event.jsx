@@ -52,9 +52,6 @@ function Event() {
   const [cardwidth, setCardwidth] = useState("14rem");
   const [cardheight, setCardheight] = useState("17rem");
 
-
-  
-
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -112,8 +109,6 @@ function Event() {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
- 
 
   const cardStyle = {
     width: "93%",
@@ -190,91 +185,77 @@ function Event() {
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event) => (
             <MDBCol lg="4" md="6" sm="12" className="mb-4" key={event.id}>
-              <MDBCard style={cardStyle}>
-                <div
-                  className="image-container"
-                  style={{
-                    overflow: "hidden", // Ensures zoom effect doesn't break the layout
-                  }}
-                >
-                  <MDBCardImage
-                    src={event.mainImage}
-                    position="top"
-                    alt={event.title}
-                    style={imageStyle}
-                    className="event-image"
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.transform = "scale(1.1)")
-                    } // Zoom on hover
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.transform = "scale(1)")
-                    } // Reset zoom
-                  />
-                </div>
+              <Link to={`/Events-details/${event.id}`}>
+                <MDBCard style={cardStyle}>
+                  <div
+                    className="image-container"
+                    style={{
+                      overflow: "hidden", // Ensures zoom effect doesn't break the layout
+                    }}
+                  >
+                    <MDBCardImage
+                      src={event.mainImage}
+                      position="top"
+                      alt={event.title}
+                      style={imageStyle}
+                      className="event-image"
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.transform = "scale(1.1)")
+                      } // Zoom on hover
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.transform = "scale(1)")
+                      } // Reset zoom
+                    />
+                  </div>
 
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: "rgba(0, 0, 0, 0.5)",
-                    borderRadius: "7px",
-                  }}
-                ></div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: "rgba(0, 0, 0, 0.5)",
+                      borderRadius: "7px",
+                    }}
+                  ></div>
 
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "10px",
-                    right: "10px",
-                    color: "#fff",
-                    backgroundColor: "rgba(0, 0, 0, 0.7)",
-                    padding: "5px 10px",
-                    borderRadius: "5px",
-                    fontSize: "12px",
-                  }}
-                >
-                  {event.programType}
-                </div>
-                {/* <div
-                style={{
-                  position: "absolute",
-                  top: "10px",
-                  left: "10px",
-                  color: "#fff",
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "10px",
+                      right: "10px",
+                      color: "#fff",
+                      backgroundColor: "rgba(0, 0, 0, 0.7)",
+                      padding: "5px 10px",
+                      borderRadius: "5px",
+                      fontSize: "12px",
+                    }}
+                  >
+                    {event.programType}
+                  </div>
 
-                  padding: "5px 10px",
-                  borderRadius: "5px",
-                  fontSize: "17px",
-                }}
-              >
-                {event.partner}
-              </div> */}
-
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "20px",
-                    left: "20px",
-                    color: "#fff",
-                  }}
-                >
-                  <h4 style={{ margin: 0 }}>{event.title}</h4>
-                  <span style={{ margin: "3px 0" }}>{event.eventVenue}</span>
-                  <span style={{ margin: "3px 0", display: "block" }}>
-                    {new Date(event.eventDate).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </span>
-                  <Link to={`/Events-details/${event.id}`}>
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "20px",
+                      left: "20px",
+                      color: "#fff",
+                    }}
+                  >
+                    <h4 style={{ margin: 0 }}>{event.title}</h4>
+                    <span style={{ margin: "3px 0" }}>{event.eventVenue}</span>
+                    <span style={{ margin: "3px 0", display: "block" }}>
+                      {new Date(event.eventDate).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
                     <i className="bi bi-arrow-right fs-4 text-white"></i>
-                  </Link>
-                </div>
-              </MDBCard>
+                  </div>
+                </MDBCard>
+              </Link>
             </MDBCol>
           ))
         ) : (

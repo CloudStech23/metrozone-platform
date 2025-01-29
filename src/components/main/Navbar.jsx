@@ -14,6 +14,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { Button } from "@mui/material";
 import { Collapse, Divider } from "@mui/material";
 import Logo from "../../Images/caro-img/Metrozone-logo.png"
+import { Link } from "react-router-dom";
 
 
 function Navbar() {
@@ -75,8 +76,9 @@ function Navbar() {
           }}
         >
           {/* Hamburger Menu */}
-          <Button
+          <Link
             aria-label=""
+            to="http://metrozonegroup.com/"
             // onClick={toggleDrawer(true)}
             style={{
               margin: "0",
@@ -85,8 +87,11 @@ function Navbar() {
               backgroundColor: "transparent",
               color: "white",
               cursor: "pointer",
+              textDecoration: "none",
+              
             }}
             className="text-white tg-btn"
+            target="_blank"
           >
             {/* <i class="fa fa-bars text-white fs-2" aria-hidden="true"></i> */}
             <img
@@ -98,7 +103,7 @@ function Navbar() {
                
             />
           <span className="text-white fs-4 " style={{fontFamily:"Lato, sans-serif"}}>METROZONE Group</span>
-          </Button> 
+          </Link> 
 
           {/* Tata Logo */}
           {/* <MDBNavbarBrand
