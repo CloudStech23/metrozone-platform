@@ -100,7 +100,7 @@ function Epage() {
       <Navbar />
       <div
         className="clear captionP"
-        style={{ paddingTop: "280px", clear: "both" }}
+        style={{ paddingTop: "281px", clear: "both" }}
       />
       <div className="container" style={{ maxWidth: "1210px", width: "100%" }}>
         <div
